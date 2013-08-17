@@ -290,7 +290,7 @@
     <!-- make a temporary distribution directory -->
     <mkdir dir="distribution"/>
     <!-- copy across LICENCE -->
-    <copy file="licence-LGPL.txt" tofile="distribution/LICENSE.txt"/>
+    <copy file="LICENSE" tofile="distribution/LICENSE"/>
     
     <filterchain id="version.filters">
        <replacetokens>
@@ -315,7 +315,7 @@
     <!-- make a temporary distribution directory -->
     <mkdir dir="distribution"/>
     <!-- copy across LICENCE -->
-    <copy file="licence-LGPL.txt" tofile="distribution/LICENSE.txt"/>
+    <copy file="LICENSE" tofile="distribution/LICENSE"/>
     <copy file="maven-jcommon-xml-project.xml" tofile="distribution/project.xml">
 	<filterchain refid="version.filters"/>
     </copy>
