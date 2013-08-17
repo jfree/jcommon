@@ -73,6 +73,11 @@
       </fileset>
     </copy>
 
+    <copy todir="${builddir}/org/jfree/ui/about/">
+      <fileset dir="source/org/jfree/ui/about">
+        <include name="*.txt"/>
+      </fileset>
+    </copy>
 
     <!-- copy across .properties files -->
     <copy todir="${builddir}/org/jfree/base/">
@@ -80,7 +85,6 @@
         <include name="*.properties"/>
       </fileset>
     </copy>
-
 
     <copy todir="${builddir}/org/jfree/base/log">
       <fileset dir="source/org/jfree/base/log">
@@ -190,8 +194,8 @@
 
   <target name="fill-dist-dir">
     <!-- copy across README -->
-    <copy file="README.txt"
-      tofile="distribution/README.txt" failonerror="false"/>
+    <copy file="README.md"
+      tofile="distribution/README.md" failonerror="false"/>
 
     <!-- copy across LICENCE -->
     <copy file="LICENSE"
