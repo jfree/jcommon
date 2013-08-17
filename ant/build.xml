@@ -194,8 +194,8 @@
       tofile="distribution/README.txt" failonerror="false"/>
 
     <!-- copy across LICENCE -->
-    <copy file="licence-LGPL.txt"
-      tofile="distribution/licence-LGPL.txt"/>
+    <copy file="LICENSE"
+      tofile="distribution/LICENSE"/>
 
     <!-- copy across runtime jar file -->
     <copy file="${jcommon-jar-file}"
