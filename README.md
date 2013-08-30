@@ -1,9 +1,9 @@
-THE JCOMMON CLASS LIBRARY: Version 1.0.18
+THE JCOMMON CLASS LIBRARY: Version 1.0.19
 =========================================
 
-23 September 2012.
+30 August 2013.
 
-(C)opyright, 2000-2012, by Object Refinery Limited and Contributors.
+(C)opyright, 2000-2013, by Object Refinery Limited and Contributors.
 
 -----------------
 1.  INTRODUCTION
@@ -64,6 +64,9 @@ The current JCommon tests have been written using JUnit 3.8.
 4.  WHAT'S NEW
 ---------------
 Changes in each version are listed here:
+
+1.0.19: (30-Aug-2013) Updated Licences.java so that complete licence text is 
+                      loaded on demand only (bug #1118).
 
 1.0.18: (23-Sep-2012) Fixed PaintList.equals() bug, fixed line break issue in
                       TextUtilities;
