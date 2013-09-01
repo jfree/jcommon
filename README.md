@@ -1,7 +1,7 @@
-THE JCOMMON CLASS LIBRARY: Version 1.0.19
+THE JCOMMON CLASS LIBRARY: Version 1.0.20
 =========================================
 
-30 August 2013.
+01 September 2013.
 
 (C)opyright, 2000-2013, by Object Refinery Limited and Contributors.
 
@@ -64,6 +64,8 @@ The current JCommon tests have been written using JUnit 3.8.
 4.  WHAT'S NEW
 ---------------
 Changes in each version are listed here:
+
+1.0.20: (01-Sep-2013) Fixed TextFragment.draw() to respect TextAnchor argument.
 
 1.0.19: (30-Aug-2013) Updated Licences.java so that complete licence text is 
                       loaded on demand only (bug #1118).
