@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2007, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2013, by Object Refinery Limited and Contributors.
  * 
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -27,7 +27,7 @@
  * -----------------
  * TextFragment.java
  * -----------------
- * (C) Copyright 2003-2007, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2003-2013, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   -;
@@ -46,7 +46,8 @@
  * 30-Sep-2004 : Moved drawRotatedString() from RefineryUtilities 
  *               --> TextUtilities (DG);
  * 16-Mar-2007 : Fixed serialization for GradientPaint (DG);
- *
+ * 01-Sep-2013 : Take into account all TextAnchor offsets (DG);
+ * 
  */
  
 package org.jfree.text;
@@ -242,18 +243,20 @@ public class TextFragment implements Serializable {
      * 
      * @return the offset.
      */
-    public float calculateBaselineOffset(final Graphics2D g2, 
-                                         final TextAnchor anchor) {
+    public float calculateBaselineOffset(Graphics2D g2, TextAnchor anchor) {
         float result = 0.0f;
         final FontMetrics fm = g2.getFontMetrics(this.font);
         final LineMetrics lm = fm.getLineMetrics("ABCxyz", g2);
-        if (anchor == TextAnchor.TOP_LEFT || anchor == TextAnchor.TOP_CENTER
-                                          || anchor == TextAnchor.TOP_RIGHT) {
+        if (anchor.isTop()) {
             result = lm.getAscent();
         }
-        else if (anchor == TextAnchor.BOTTOM_LEFT 
-                || anchor == TextAnchor.BOTTOM_CENTER
-                || anchor == TextAnchor.BOTTOM_RIGHT) {
+        else if (anchor.isHalfAscent()) {
+            result = lm.getAscent() / 2.0f;
+        }
+        else if (anchor.isVerticalCenter()) {
+            result = lm.getAscent() / 2.0f - lm.getDescent() / 2.0f;
+        }
+        else if (anchor.isBottom()) {
             result = -lm.getDescent() - lm.getLeading();
         }
         return result;                                             

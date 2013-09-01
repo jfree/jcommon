@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2005, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2013, by Object Refinery Limited and Contributors.
  * 
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -27,7 +27,7 @@
  * ---------------
  * TextAnchor.java
  * ---------------
- * (C) Copyright 2003-2005, by Object Refinery Limited.
+ * (C) Copyright 2003-2013, by Object Refinery Limited.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   -;
@@ -38,6 +38,9 @@
  * --------
  * 10-Jun-2003 : Version 1 (DG);
  * 11-Jan-2005 : Removed deprecated code (DG);
+ * 01-Sep-2013 : Added isLeft(), isRight(), isHorizontalCenter(),
+ *               isTop(), isBottom(), isHalfAscent() and isVerticalCenter() 
+ *               methods (DG);
  * 
  */
 
@@ -127,7 +130,112 @@ public final class TextAnchor implements Serializable {
     private TextAnchor(final String name) {
         this.name = name;
     }
+    
+    /** 
+     * Returns <code>true</code> if the anchor is a left-side anchor, and
+     * <code>false</code> otherwise.
+     * 
+     * @return A boolean.
+     * 
+     * @since 1.0.20
+     */
+    public boolean isLeft() {
+        return this == BASELINE_LEFT || this == BOTTOM_LEFT 
+                || this == CENTER_LEFT || this == HALF_ASCENT_LEFT 
+                || this == TOP_LEFT;
+    }
 
+    /** 
+     * Returns <code>true</code> if the anchor is a right-side anchor, and
+     * <code>false</code> otherwise.
+     * 
+     * @return A boolean.
+     * 
+     * @since 1.0.20
+     */
+    public boolean isRight() {
+        return this == BASELINE_RIGHT || this == BOTTOM_RIGHT 
+                || this == CENTER_RIGHT || this == HALF_ASCENT_RIGHT 
+                || this == TOP_RIGHT;
+    }
+
+    /** 
+     * Returns <code>true</code> if the anchor is a center anchor, and
+     * <code>false</code> otherwise.
+     * 
+     * @return A boolean.
+     * 
+     * @since 1.0.20
+     */
+    public boolean isHorizontalCenter() {
+        return this == BASELINE_CENTER || this == BOTTOM_CENTER 
+                || this == CENTER || this == HALF_ASCENT_CENTER 
+                || this == TOP_CENTER;
+    }
+
+    /** 
+     * Returns <code>true</code> if the anchor is a top anchor, and
+     * <code>false</code> otherwise.
+     * 
+     * @return A boolean.
+     * 
+     * @since 1.0.20
+     */
+    public boolean isTop() {
+        return this == TOP_LEFT || this == TOP_CENTER || this == TOP_RIGHT;
+    }
+
+    /** 
+     * Returns <code>true</code> if the anchor is a bottom anchor, and
+     * <code>false</code> otherwise.
+     * 
+     * @return A boolean.
+     * 
+     * @since 1.0.20
+     */
+    public boolean isBottom() {
+        return this == BOTTOM_LEFT || this == BOTTOM_CENTER 
+                || this == BOTTOM_RIGHT;
+    }
+    
+    /** 
+     * Returns <code>true</code> if the anchor is a baseline anchor, and
+     * <code>false</code> otherwise.
+     * 
+     * @return A boolean.
+     * 
+     * @since 1.0.20
+     */
+    public boolean isBaseline() {
+        return this == BASELINE_LEFT || this == BASELINE_CENTER 
+                || this == BASELINE_RIGHT;
+    }
+    
+    /** 
+     * Returns <code>true</code> if the anchor is a half-ascent anchor, and
+     * <code>false</code> otherwise.
+     * 
+     * @return A boolean.
+     * 
+     * @since 1.0.20
+     */
+    public boolean isHalfAscent() {
+        return this == HALF_ASCENT_LEFT || this == HALF_ASCENT_CENTER 
+                || this == HALF_ASCENT_RIGHT;
+    }
+    
+    /** 
+     * Returns <code>true</code> if the anchor is a half-ascent anchor, and
+     * <code>false</code> otherwise.
+     * 
+     * @return A boolean.
+     * 
+     * @since 1.0.20
+     */
+    public boolean isVerticalCenter() {
+        return this == CENTER_LEFT || this == CENTER  || this == CENTER_RIGHT;
+    }
+    
     /**
      * Returns a string representing the object.
      *

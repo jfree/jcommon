@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2005, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2013, by Object Refinery Limited and Contributors.
  * 
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -27,7 +27,7 @@
  * -------------
  * TextLine.java
  * -------------
- * (C) Copyright 2003-2005, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2003-2013, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   -;
@@ -44,6 +44,7 @@
  *               because of JDK bug 4976448 which persists on JDK 1.3.1 (DG);
  * 03-Sep-2004 : Added a method to remove a fragment (DG);
  * 08-Jul-2005 : Fixed bug in calculateBaselineOffset() (DG);
+ * 01-Sep-2013 : Updated draw() method to take into account the textAnchor (DG);
  *
  */
 
@@ -153,22 +154,25 @@ public class TextLine implements Serializable {
      * @param rotateY  the y-coordinate for the rotation point.
      * @param angle  the rotation angle (in radians).
      */
-    public void draw(final Graphics2D g2,
-                     final float anchorX, final float anchorY, 
-                     final TextAnchor anchor,
-                     final float rotateX, final float rotateY, 
-                     final double angle) {
+    public void draw(Graphics2D g2, float anchorX, float anchorY, 
+            TextAnchor anchor, float rotateX,  float rotateY, double angle) {
     
-        float x = anchorX;
+        Size2D dim = calculateDimensions(g2);
+        float xAdj = 0.0f;
+        if (anchor.isHorizontalCenter()) {
+            xAdj = (float) -dim.getWidth() / 2.0f;
+        }
+        else if (anchor.isRight()) {
+            xAdj = (float) -dim.getWidth();
+        }
+        float x = anchorX + xAdj;
         final float yOffset = calculateBaselineOffset(g2, anchor);
         final Iterator iterator = this.fragments.iterator();
         while (iterator.hasNext()) {
             final TextFragment fragment = (TextFragment) iterator.next();
             final Size2D d = fragment.calculateDimensions(g2);
-            fragment.draw(
-                g2, x, anchorY + yOffset, TextAnchor.BASELINE_LEFT, 
-                rotateX, rotateY, angle
-            );
+            fragment.draw(g2, x, anchorY + yOffset, TextAnchor.BASELINE_LEFT, 
+                    rotateX, rotateY, angle);
             x = x + (float) d.getWidth();
         }
     
