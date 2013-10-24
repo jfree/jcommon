@@ -1,7 +1,7 @@
-THE JCOMMON CLASS LIBRARY: Version 1.0.20
+THE JCOMMON CLASS LIBRARY: Version 1.0.21
 =========================================
 
-01 September 2013.
+24 October 2013.
 
 (C)opyright, 2000-2013, by Object Refinery Limited and Contributors.
 
@@ -64,6 +64,10 @@ The current JCommon tests have been written using JUnit 3.8.
 4.  WHAT'S NEW
 ---------------
 Changes in each version are listed here:
+
+1.0.21: (24-Oct-2013) Modified drawRotatedString() to call drawAlignedString()
+                      when the rotation angle is 0.0.  This provides benefits
+                      downstream for JFreeChart, JFreeSVG and OrsonPDF.
 
 1.0.20: (01-Sep-2013) Fixed TextFragment.draw() to respect TextAnchor argument.
 
