@@ -10,7 +10,7 @@
 
     <artifactId>jcommon</artifactId>
     <groupId>org.jfree</groupId>
-    <version>1.0.18</version>
+    <version>1.0.21</version>
 
     <!-- this is required to host it on Sonatype's OSSRH -->
     <parent>
