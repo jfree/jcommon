@@ -55,6 +55,8 @@
  * 27-Apr-2009 : Fix text wrapping with new lines (DG);
  * 27-Jul-2009 : Use AttributedString in drawRotatedString() (DG);
  * 14-Dec-2011 : Fix for nextLineBreak() method - thanks to Brian Fischer (DG);
+ * 24-Oct-2013 : Update drawRotatedString() to use drawAlignedString() when 
+ *               the rotation angle is 0.0 (DG);
  *
  */
 
