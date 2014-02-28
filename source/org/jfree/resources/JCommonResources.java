@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2013, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2014, by Object Refinery Limited and Contributors.
  *
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -27,12 +27,10 @@
  * ---------------------
  * JCommonResources.java
  * ---------------------
- * (C) Copyright 2002-2013, by Object Refinery Limited.
+ * (C) Copyright 2002-2014, by Object Refinery Limited.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   -;
- *
- * $Id: JCommonResources.java,v 1.23 2011/10/17 21:26:05 mungady Exp $
  *
  */
 
@@ -65,10 +63,10 @@ public class JCommonResources extends ListResourceBundle {
     /** The resources to be localised. */
     private static final Object[][] CONTENTS = {
         { "project.name", "JCommon" },
-        { "project.version", "1.0.21"},
+        { "project.version", "1.0.22"},
         { "project.info", "http://www.jfree.org/jcommon/" },
         { "project.copyright",
-            "(C)opyright 2000-2013, by Object Refinery Limited and Contributors"}
+            "(C)opyright 2000-2014, by Object Refinery Limited and Contributors"}
 
     };
 
