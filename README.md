@@ -1,9 +1,9 @@
-THE JCOMMON CLASS LIBRARY: Version 1.0.21
+THE JCOMMON CLASS LIBRARY: Version 1.0.22
 =========================================
 
-24 October 2013.
+28 February 2014.
 
-(C)opyright, 2000-2013, by Object Refinery Limited and Contributors.
+(C)opyright, 2000-2014, by Object Refinery Limited and Contributors.
 
 -----------------
 1.  INTRODUCTION
@@ -20,9 +20,9 @@ MOST LIKELY BE "RETIRED".
 JCommon is licensed, free of charge, under the terms of the GNU Lesser
 General Public Licence.  A copy of the licence is included in the download.
 
-The latest version of this class library can be obtained from:
+The sources for this library are kept in a repo at GitHub:
 
-    http://www.jfree.org/jcommon/
+    https://github.com/jfree/jcommon
 
 If you have any comments, suggestions or bugs to report, please post a
 message in the JCommon forum.
@@ -64,6 +64,8 @@ The current JCommon tests have been written using JUnit 3.8.
 4.  WHAT'S NEW
 ---------------
 Changes in each version are listed here:
+
+1.0.22: (28-Feb-2014) Fix for endless loop in TextUtilities.createTextBlock().
 
 1.0.21: (24-Oct-2013) Modified drawRotatedString() to call drawAlignedString()
                       when the rotation angle is 0.0.  This provides benefits
