@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2013, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2014, by Object Refinery Limited and Contributors.
  *
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -27,7 +27,7 @@
  * ------------------
  * TextUtilities.java
  * ------------------
- * (C) Copyright 2004-2013, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2004-2014, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   Brian Fischer;
@@ -58,6 +58,7 @@
  * 24-Oct-2013 : Update drawRotatedString() to use drawAlignedString() when 
  *               the rotation angle is 0.0 (DG);
  * 25-Oct-2013 : Added drawStringsWithFontAttributes flag (DG);
+ * 28-Feb-2014 : Fix endless loop in createTextBlock() (DG);
  *
  */
 
@@ -248,6 +249,8 @@ public class TextUtilities {
             if (next == BreakIterator.DONE) {
                 result.addLine(text.substring(current), font, paint);
                 return result;
+            } else if (next == current) {
+                next++; // we must take one more character or we'll loop forever
             }
             result.addLine(text.substring(current, next), font, paint);
             lines++;
@@ -274,7 +277,9 @@ public class TextUtilities {
     }
 
     /**
-     * Returns the character index of the next line break.
+     * Returns the character index of the next line break.  If the next
+     * character is wider than <code>width</code> this method will return
+     * <code>start</code> - the caller should check for this case.
      *
      * @param text  the text (<code>null</code> not permitted).
      * @param start  the start index.
