@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2005, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2014, by Object Refinery Limited and Contributors.
  * 
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -27,27 +27,16 @@
  * ---------------
  * PaintTests.java
  * ---------------
- * (C) Copyright 2003-2005, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2003-2014, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   -;
- *
- * $Id: PaintTests.java,v 1.3 2005/10/18 13:16:37 mungady Exp $
- *
- * Changes
- * -------
- * 23-Oct-2003 : Version 1 (DG);
- *
  */
 
 package org.jfree.junit;
 
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Paint;
-import java.awt.TexturePaint;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -72,7 +61,7 @@ public class PaintTests extends TestCase {
      *
      * @param name  the name of the tests.
      */
-    public PaintTests(final String name) {
+    public PaintTests(String name) {
         super(name);
     }
 
@@ -80,8 +69,8 @@ public class PaintTests extends TestCase {
      * Check that the equals() method distinguishes all fields.
      */
     public void testColorEquals() {
-        final Paint p1 = new Color(0xFF, 0xEE, 0xDD);
-        final Paint p2 = new Color(0xFF, 0xEE, 0xDD);
+        Paint p1 = new Color(0xFF, 0xEE, 0xDD);
+        Paint p2 = new Color(0xFF, 0xEE, 0xDD);
         assertEquals(p1, p2);
     }
 
@@ -89,34 +78,11 @@ public class PaintTests extends TestCase {
      * Two objects that are equal are required to return the same hashCode. 
      */
     public void testColorHashcode() {
-        final Paint p1 = new Color(0xFF, 0xEE, 0xDD);
-        final Paint p2 = new Color(0xFF, 0xEE, 0xDD);
+        Paint p1 = new Color(0xFF, 0xEE, 0xDD);
+        Paint p2 = new Color(0xFF, 0xEE, 0xDD);
         assertTrue(p1.equals(p2));
-        final int h1 = p1.hashCode();
-        final int h2 = p2.hashCode();
+        int h1 = p1.hashCode();
+        int h2 = p2.hashCode();
         assertEquals(h1, h2);
     }
-
-    /**
-     * Check that the equals() method distinguishes all fields.
-     */
-    public void testGradientPaintEquals() {
-        final Paint p1 = new GradientPaint(10.0f, 20.0f, Color.blue, 30.0f, 40.0f, Color.red);
-        final Paint p2 = new GradientPaint(10.0f, 20.0f, Color.blue, 30.0f, 40.0f, Color.red);
-        assertEquals(p1, p2);
-    }
-
-    /**
-     * Check that the equals() method distinguishes all fields.
-     */
-    public void testTexturePaintEquals() {
-        final Paint p1 = new TexturePaint(
-            new BufferedImage(100, 200, BufferedImage.TYPE_INT_RGB), new Rectangle2D.Double()
-        );
-        final Paint p2 = new TexturePaint(
-            new BufferedImage(100, 200, BufferedImage.TYPE_INT_RGB), new Rectangle2D.Double()
-        );
-        assertEquals(p1, p2);
-    }
-
 }
