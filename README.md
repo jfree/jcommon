@@ -1,7 +1,7 @@
-THE JCOMMON CLASS LIBRARY: Version 1.0.22
+THE JCOMMON CLASS LIBRARY: Version 1.0.23
 =========================================
 
-28 February 2014.
+Not yet released.
 
 (C)opyright, 2000-2014, by Object Refinery Limited and Contributors.
 
@@ -38,32 +38,12 @@ Thomas Morgner, Krzysztof Paz, Andrzej Porebski, Nabuo Tamemasa, Mark Watson
 and Hari.
 
 ---------------
-3.  TEST CASES
----------------
-Some test cases have been developed using the JUnit testing
-framework.  These are included with the source code, in the following
-packages:
-
-org.jfree.junit
-org.jfree.date.junit
-org.jfree.io.junit
-org.jfree.text.junit
-org.jfree.ui.junit
-org.jfree.util.junit
-
-If you want to recompile these packages, you will need the junit.jar
-file that is included in the 'lib' subdirectory.
-
-To find out more about JUnit, please visit:
-
-http://www.junit.org/
-
-The current JCommon tests have been written using JUnit 3.8.
-
----------------
-4.  WHAT'S NEW
+3.  WHAT'S NEW
 ---------------
 Changes in each version are listed here:
+
+1.0.23: (24-Jul-2014) Reorganised directories to align to Maven standard.
+                      Updated pom file.  Fixed Javadoc warnings for JDK 8.
 
 1.0.22: (28-Feb-2014) Fix for endless loop in TextUtilities.createTextBlock().
 
