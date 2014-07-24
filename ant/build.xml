@@ -146,11 +146,6 @@
       deprecation="${build.deprecation}" debug="${build.debug}"
       optimize="${build.optimize}" target="${build.target}" source="${build.source}">
       <classpath refid="junit.classpath"/>
-      <include name="org/jfree/junit/*"/>
-      <include name="org/jfree/date/junit/*"/>
-      <include name="org/jfree/text/junit/*"/>
-      <include name="org/jfree/ui/junit/*"/>
-      <include name="org/jfree/util/junit/*"/>
     </javac>
 
     <!-- make the jar -->
