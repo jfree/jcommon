@@ -1,7 +1,7 @@
 THE JCOMMON CLASS LIBRARY: Version 1.0.23
 =========================================
 
-Not yet released.
+24 July 2014
 
 (C)opyright, 2000-2014, by Object Refinery Limited and Contributors.
 
@@ -18,7 +18,8 @@ MOST LIKELY BE "RETIRED".
 *****
 
 JCommon is licensed, free of charge, under the terms of the GNU Lesser
-General Public Licence.  A copy of the licence is included in the download.
+General Public Licence, version 2.1 or later.  A copy of the licence is 
+included in the download.
 
 The sources for this library are kept in a repo at GitHub:
 
