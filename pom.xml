@@ -110,6 +110,10 @@
                     <source>${project.source.level}</source>
                     <target>${project.target.level}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <excludes>
+                      <exclude>org/jfree/demo/**</exclude>
+                      <exclude>org/jfree/xml/**</exclude>
+                    </excludes>                
                 </configuration>
             </plugin>
 
@@ -227,6 +231,12 @@
                 </goals>
               </execution>
             </executions>
+            <configuration>
+              <sourceFileExcludes>
+                <exclude>org/jfree/demo/**</exclude>
+                <exclude>org/jfree/xml/**</exclude>
+              </sourceFileExcludes>
+            </configuration>
           </plugin>
 
           <plugin>
