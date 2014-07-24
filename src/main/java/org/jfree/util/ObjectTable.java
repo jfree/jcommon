@@ -233,8 +233,8 @@ public class ObjectTable implements Serializable
   /**
    * Returns the object from a particular cell in the table. Returns null, if
    * there is no object at the given position.
-   * <p/>
-   * Note: throws IndexOutOfBoundsException if row or column is negative.
+   * <p>
+   * Note: throws IndexOutOfBoundsException if row or column is negative.</p>
    *
    * @param row    the row index (zero-based).
    * @param column the column index (zero-based).

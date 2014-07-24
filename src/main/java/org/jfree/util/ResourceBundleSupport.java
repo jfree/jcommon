@@ -65,14 +65,14 @@ import javax.swing.KeyStroke;
 
 /**
  * An utility class to ease up using property-file resource bundles.
- * <p/>
+ * <p>
  * The class support references within the resource bundle set to minimize the
- * occurence of duplicate keys. References are given in the format:
+ * occurence of duplicate keys. References are given in the format:</p>
  * <pre>
  * a.key.name=@referenced.key
  * </pre>
- * <p/>
- * A lookup to a key in an other resource bundle should be written by
+ * <p>
+ * A lookup to a key in an other resource bundle should be written by</p>
  * <pre>
  * a.key.name=@@resourcebundle_name@referenced.key
  * </pre>
@@ -318,9 +318,9 @@ public class ResourceBundleSupport
    * Returns the mnemonic stored at the given resourcebundle key. The mnemonic
    * should be either the symbolic name of one of the KeyEvent.VK_* constants
    * (without the 'VK_') or the character for that key.
-   * <p/>
+   * <p>
    * For the enter key, the resource bundle would therefore either contain
-   * "ENTER" or "\n".
+   * "ENTER" or "\n".</p>
    * <pre>
    * a.resourcebundle.key=ENTER
    * an.other.resourcebundle.key=\n
@@ -354,15 +354,15 @@ public class ResourceBundleSupport
 
   /**
    * Returns the keystroke stored at the given resourcebundle key.
-   * <p/>
-   * The keystroke will be composed of a simple key press and the plattform's
-   * MenuKeyMask.
-   * <p/>
+   * <p>
+   * The keystroke will be composed of a simple key press and the platform's
+   * MenuKeyMask.</p>
+   * <p>
    * The keystrokes character key should be either the symbolic name of one of
-   * the KeyEvent.VK_* constants or the character for that key.
-   * <p/>
+   * the KeyEvent.VK_* constants or the character for that key.</p>
+   * <p>
    * For the 'A' key, the resource bundle would therefore either contain
-   * "VK_A" or "a".
+   * "VK_A" or "a".</p>
    * <pre>
    * a.resourcebundle.key=VK_A
    * an.other.resourcebundle.key=a
@@ -391,15 +391,15 @@ public class ResourceBundleSupport
 
   /**
    * Returns the keystroke stored at the given resourcebundle key.
-   * <p/>
+   * <p>
    * The keystroke will be composed of a simple key press and the given
-   * KeyMask. If the KeyMask is zero, a plain Keystroke is returned.
-   * <p/>
+   * KeyMask. If the KeyMask is zero, a plain Keystroke is returned.</p>
+   * <p>
    * The keystrokes character key should be either the symbolic name of one of
-   * the KeyEvent.VK_* constants or the character for that key.
-   * <p/>
+   * the KeyEvent.VK_* constants or the character for that key.</p>
+   * <p>
    * For the 'A' key, the resource bundle would therefore either contain
-   * "VK_A" or "a".
+   * "VK_A" or "a".</p>
    * <pre>
    * a.resourcebundle.key=VK_A
    * an.other.resourcebundle.key=a
@@ -438,12 +438,12 @@ public class ResourceBundleSupport
 
   /**
    * Returns a JMenu created from a resource bundle definition.
-   * <p/>
+   * <p>
    * The menu definition consists of two keys, the name of the menu and the
    * mnemonic for that menu. Both keys share a common prefix, which is
    * extended by ".name" for the name of the menu and ".mnemonic" for the
-   * mnemonic.
-   * <p/>
+   * mnemonic.</p>
+   * 
    * <pre>
    * # define the file menu
    * menu.file.name=File
@@ -466,9 +466,9 @@ public class ResourceBundleSupport
   /**
    * Returns a URL pointing to a resource located in the classpath. The
    * resource is looked up using the given key.
-   * <p/>
+   * <p>
    * Example: The load a file named 'logo.gif' which is stored in a java
-   * package named 'org.jfree.resources':
+   * package named 'org.jfree.resources':</p>
    * <pre>
    * mainmenu.logo=org/jfree/resources/logo.gif
    * </pre>

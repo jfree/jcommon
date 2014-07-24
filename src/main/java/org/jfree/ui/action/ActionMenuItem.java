@@ -57,9 +57,9 @@ import org.jfree.util.Log;
 /**
  * The ActionMenuItem is used to connect an Action and its properties to an
  * MenuItem.
- * <p/>
+ * <p>
  * This functionality is already implemented in JDK 1.3 but needed for JDK 1.2.2
- * compatibility.
+ * compatibility.</p>
  *
  * @author Thomas Morgner
  */
@@ -247,7 +247,7 @@ public class ActionMenuItem extends JMenuItem
    * Assigns the given action to this menuitem. The properties of the action
    * will be assigned to the menuitem. If an previous action was set, the old
    * action is unregistered.
-   * <p/>
+   * 
    * <ul> <li>NAME - specifies the menuitem text <li>SMALL_ICON - specifies the
    * menuitems icon <li>MNEMONIC_KEY - specifies the menuitems mnemonic key
    * <li>ACCELERATOR_KEY - specifies the menuitems accelerator </ul>

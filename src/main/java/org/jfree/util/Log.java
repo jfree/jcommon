@@ -387,8 +387,8 @@ public class Log {
      * Logs a message to the main log stream. All attached logTargets will also
      * receive this message. If the given log-level is higher than the given debug-level
      * in the main config file, no logging will be done.
-     * <p/>
-     * The exception's stacktrace will be appended to the log-stream
+     * <p>
+     * The exception's stacktrace will be appended to the log-stream</p>
      *
      * @param level   log level of the message.
      * @param message text to be logged.
@@ -402,8 +402,8 @@ public class Log {
      * Logs a message to the main log stream. All attached logTargets will also
      * receive this message. If the given log-level is higher than the given debug-level
      * in the main config file, no logging will be done.
-     * <p/>
-     * The exception's stacktrace will be appended to the log-stream
+     * <p>
+     * The exception's stacktrace will be appended to the log-stream</p>
      *
      * @param level   log level of the message.
      * @param message text to be logged.

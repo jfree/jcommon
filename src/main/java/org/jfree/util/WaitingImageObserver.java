@@ -79,7 +79,7 @@ public class WaitingImageObserver implements ImageObserver, Serializable,
   private boolean error;
 
   /**
-   * Creates a new <code>ImageObserver<code> for the given <code>Image<code>.
+   * Creates a new <code>ImageObserver</code> for the given <code>Image</code>.
    * The observer has to be started by an external thread.
    *
    * @param image  the image to observe (<code>null</code> not permitted).

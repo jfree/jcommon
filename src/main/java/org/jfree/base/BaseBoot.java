@@ -84,9 +84,10 @@ public class BaseBoot extends AbstractBoot {
 
     /**
      * Returns the global configuration for JFreeReport.
-     * <p/>
+     * <p>
      * In the current implementation, the configuration has no properties defined, but
-     * references a parent configuration that: <ul> <li>copies across all the
+     * references a parent configuration that:</p> 
+     * <ul> <li>copies across all the
      * <code>System</code> properties to use as report configuration properties (obviously
      * the majority of them will not apply to reports);</li> <li>itself references a parent
      * configuration that reads its properties from a file <code>jfreereport.properties</code>.

@@ -171,9 +171,9 @@ public class ExtendedConfigurationWrapper
   /**
    * Returns the configuration property with the specified key (or the specified default
    * value if there is no such property).
-   * <p/>
+   * <p>
    * If the property is not defined in this configuration, the code will lookup the
-   * property in the parent configuration.
+   * property in the parent configuration.</p>
    *
    * @param key          the property key.
    * @param defaultValue the default value.

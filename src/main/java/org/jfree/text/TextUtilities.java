@@ -757,7 +757,7 @@ public class TextUtilities {
      * @param rotateY  the y coordinate for the rotation point.
      *
      * @return The bounds (<code>null</code> if <code>text</code> is
-     *         </code>null</code> or has zero length).
+     *         <code>null</code> or has zero length).
      */
     public static Shape calculateRotatedStringBounds(String text, Graphics2D g2,
             float textX, float textY, double angle, float rotateX, 
@@ -840,7 +840,7 @@ public class TextUtilities {
      * Sets the flag that controls whether or not strings are drawn using the
      * current font attributes.  This is a hack to allow underlining of titles
      * without big changes to the API.  See:
-     * http://www.jfree.org/phpBB2/viewtopic.php?p=45459&highlight=#45459
+     * http://www.jfree.org/phpBB2/viewtopic.php?p=45459&amp;highlight=#45459
      * 
      * @param b  the new flag value.
      * 

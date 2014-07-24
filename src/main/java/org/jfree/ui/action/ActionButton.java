@@ -222,7 +222,7 @@ public class ActionButton extends JButton {
     /**
      * Assigns the given action to this button. The properties of the action will be assigned to
      * the button. If an previous action was set, the old action is unregistered.
-     * <p/>
+     * 
      * <ul>
      * <li>NAME - specifies the button text
      * <li>SMALL_ICON - specifies the buttons icon

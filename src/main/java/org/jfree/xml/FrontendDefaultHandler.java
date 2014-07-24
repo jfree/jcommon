@@ -98,14 +98,15 @@ public abstract class FrontendDefaultHandler extends DefaultHandler implements C
 
     /**
      * Receive an object for locating the origin of SAX document events.
-     * <p/>
+     * <p>
      * The locator allows the application to determine the end position of
      * any document-related event, even if the parser is not reporting an
      * error. Typically, the application will use this information for
      * reporting its own errors (such as character content that does not
      * match an application's business rules). The information returned by
      * the locator is probably not sufficient for use with a search engine.
-     *
+     * </p>
+     * 
      * @param locator the locator.
      */
     public void setDocumentLocator(final Locator locator) {
@@ -134,9 +135,9 @@ public abstract class FrontendDefaultHandler extends DefaultHandler implements C
     /**
      * Returns the configuration property with the specified key (or the specified default value
      * if there is no such property).
-     * <p/>
+     * <p>
      * If the property is not defined in this configuration, the code will lookup the property in
-     * the parent configuration.
+     * the parent configuration.</p>
      *
      * @param key          the property key.
      * @param defaultValue the default value.

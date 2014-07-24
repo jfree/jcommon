@@ -129,7 +129,7 @@ public class FormatLayout implements LayoutManager, Serializable {
      * Any component can be added, but I think of them in terms of Labels,
      * Components, and Buttons.
      * The formats available are:  C, LC, LCB, LCLC, LCLCB, LCBLC or LCBLCB.
-     * <table>
+     * <table summary="layout options" >
      * <tr>
      * <td>C</td>
      * <td>1 component in this row (spread across all six columns).</td>

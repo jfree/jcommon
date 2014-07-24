@@ -50,10 +50,10 @@ import java.awt.Rectangle;
 
 /**
  * A simple layoutmanager to overlay all components of a parent.
- * <p/>
- * This layout manager acts similiar to the card layout, but all
- * childs of the parent band have the same size and all childs can
- * be visible at the same time.
+ * <p>
+ * This layout manager acts similar to the card layout, but all
+ * children of the parent band have the same size and all children can
+ * be visible at the same time.</p>
  *
  * @author Thomas Morgner
  */

@@ -63,11 +63,10 @@ public class ClassComparator implements Comparator, Serializable {
     /**
      * Compares its two arguments for order.  Returns a negative integer,
      * zero, or a positive integer as the first argument is less than, equal
-     * to, or greater than the second.<p>
-     * <P>
-     * Note: throws ClassCastException if the arguments' types prevent them from
-     * being compared by this Comparator.
-     * And IllegalArgumentException if the classes share no relation.
+     * to, or greater than the second.
+     * <p>Note: throws ClassCastException if the arguments' types prevent them 
+     * from being compared by this Comparator. And IllegalArgumentException if 
+     * the classes share no relation.</p>
      *
      * The implementor must ensure that <tt>sgn(compare(x, y)) ==
      * -sgn(compare(y, x))</tt> for all <tt>x</tt> and <tt>y</tt>.  (This

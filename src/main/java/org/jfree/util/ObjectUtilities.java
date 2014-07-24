@@ -105,9 +105,9 @@ public final class ObjectUtilities {
     /**
      * Defines the internal configuration entry, whether the classloader of
      * the thread context or the context classloader should be used.
-     * <p/>
+     * <p>
      * This setting can only be defined using the API, there is no safe way
-     * to put this into an external configuration file.
+     * to put this into an external configuration file.</p>
      *
      * @param classLoaderSource the classloader source,
      *                          either THREAD_CONTEXT or CLASS_CONTEXT.

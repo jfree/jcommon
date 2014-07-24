@@ -127,15 +127,15 @@ public class DrawablePanel extends JPanel
 
   /**
    * Returns true if this component is completely opaque.
-   * <p/>
+   * <p>
    * An opaque component paints every pixel within its rectangular bounds. A
    * non-opaque component paints only a subset of its pixels or none at all,
    * allowing the pixels underneath it to "show through".  Therefore, a
    * component that does not fully paint its pixels provides a degree of
-   * transparency.
-   * <p/>
+   * transparency.</p>
+   * <p>
    * Subclasses that guarantee to always completely paint their contents should
-   * override this method and return true.
+   * override this method and return true.</p>
    *
    * @return true if this component is completely opaque
    * @see #setOpaque
@@ -154,7 +154,7 @@ public class DrawablePanel extends JPanel
    * non-<code>null</code>.  We pass the delegate a copy of the
    * <code>Graphics</code> object to protect the rest of the paint code from
    * irrevocable changes (for example, <code>Graphics.translate</code>).
-   * <p/>
+   * <p>
    * If you override this in a subclass you should not make permanent changes to
    * the passed in <code>Graphics</code>. For example, you should not alter the
    * clip <code>Rectangle</code> or modify the transform. If you need to do
@@ -163,11 +163,11 @@ public class DrawablePanel extends JPanel
    * manipulate it. Further, if you do not invoker super's implementation you
    * must honor the opaque property, that is if this component is opaque, you
    * must completely fill in the background in a non-opaque color. If you do not
-   * honor the opaque property you will likely see visual artifacts.
-   * <p/>
+   * honor the opaque property you will likely see visual artifacts.</p>
+   * <p>
    * The passed in <code>Graphics</code> object might have a transform other
    * than the identify transform installed on it.  In this case, you might get
-   * unexpected results if you cumulatively apply another transform.
+   * unexpected results if you cumulatively apply another transform.</p>
    *
    * @param g the <code>Graphics</code> object to protect
    * @see #paint

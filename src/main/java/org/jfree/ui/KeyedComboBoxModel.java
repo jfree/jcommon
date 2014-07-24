@@ -49,12 +49,12 @@ import javax.swing.event.ListDataListener;
 /**
  * The KeyedComboBox model allows to define an internal key (the data element)
  * for every entry in the model.
- * <p/>
- * This class is usefull in all cases, where the public text differs from the
+ * <p>
+ * This class is useful in all cases, where the public text differs from the
  * internal view on the data. A separation between presentation data and
- * processing data is a prequesite for localizing combobox entries. This model
+ * processing data is a prerequisite for localizing combobox entries. This model
  * does not allow selected elements, which are not in the list of valid
- * elements.
+ * elements.</p>
  *
  * @author Thomas Morgner
  */
@@ -295,7 +295,7 @@ public class KeyedComboBoxModel implements ComboBoxModel
   }
 
   /**
-   * @param allowOtherValue
+   * @param allowOtherValue  new flag value.
    */
   public void setAllowOtherValue(final boolean allowOtherValue)
   {
