@@ -10,13 +10,13 @@
 
     <artifactId>jcommon</artifactId>
     <groupId>org.jfree</groupId>
-    <version>1.0.22</version>
+    <version>1.0.22-SNAPSHOT</version>
 
     <!-- this is required to host it on Sonatype's OSSRH -->
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
-        <version>7</version>
+        <version>9</version>
     </parent>
 
     <organization>
@@ -80,12 +80,12 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>source</sourceDirectory>
-        <testSourceDirectory>source</testSourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
 
         <resources>
             <resource>
-                <directory>source</directory>
+                <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
                     <include>**/*.</include>
@@ -99,9 +99,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.8</version>
-                <configuration>
-                    <excludePackageNames>*.junit</excludePackageNames>
-                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadoc</id>
@@ -120,12 +117,6 @@
                     <source>${project.source.level}</source>
                     <target>${project.target.level}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                    <excludes>
-                        <exclude>**/junit/*</exclude>
-                    </excludes>
-                    <testIncludes>
-                        <exclude>**/junit/*</exclude>
-                    </testIncludes>
                 </configuration>
             </plugin>
 
@@ -134,9 +125,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.10</version>
                 <configuration>
-                    <includes>
-                        <include>**/junit/*Tests.java</include>
-                    </includes>
                     <excludes>
                         <exclude>**/JCommonTestSuite.java</exclude>
                         <exclude>**/*PackageTests.java</exclude>
