@@ -82,8 +82,8 @@ import org.jfree.util.ObjectUtilities;
  * This section may be followed by one or more "depends" sections. These
  * sections describe the base modules that are required to be active to make this
  * module work. The package manager will enforce this policy and will deactivate this
- * module if one of the base modules is missing.
- * <p>
+ * module if one of the base modules is missing.</p>
+ * 
  * <pre>
  * depends:
  *   module: org.jfree.report.modules.output.table.xls.XLSTableModule
