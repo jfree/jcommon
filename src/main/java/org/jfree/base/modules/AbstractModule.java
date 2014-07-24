@@ -57,15 +57,15 @@ import org.jfree.util.ObjectUtilities;
  * <p>
  * The module can be specified in an external property file. The file name of this
  * specification defaults to "module.properties". This file is no real property file,
- * it follows a more complex rule set.
+ * it follows a more complex rule set.</p>
  * <p>
  * Lines starting with '#' are considered comments.
  * Section headers start at the beginning of the line, section properties
- * are indented with at least one whitespace.
+ * are indented with at least one whitespace.</p>
  * <p>
  * The first section is always the module info and contains the basic module
- * properties like name, version and a short description.
- * <p>
+ * properties like name, version and a short description.</p>
+ * 
  * <pre>
  * module-info:
  *   name: xls-export-gui
@@ -759,7 +759,7 @@ public abstract class AbstractModule extends DefaultModuleInfo implements Module
    *
    * @param classname ?
    * @param context ?
-   * @throws ModuleInitializeException
+   * @throws ModuleInitializeException if there is an initialisation error.
    */
   protected void performExternalInitialize(final String classname, final Class context)
       throws ModuleInitializeException

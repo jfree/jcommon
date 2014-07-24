@@ -61,13 +61,13 @@ import org.jfree.util.ObjectUtilities;
  * The PackageManager is used to load and configure the modules of JFreeReport.
  * Modules are used to extend the basic capabilities of JFreeReport by providing
  * a simple plugin-interface.
- * <p/>
+ * <p>
  * Modules provide a simple capability to remove unneeded functionality from the
  * JFreeReport system and to reduce the overall code size. The modularisation provides
- * a very strict way of removing unnecessary dependencies beween the various packages.
- * <p/>
+ * a very strict way of removing unnecessary dependencies between the various packages.</p>
+ * <p>
  * The package manager can be used to add new modules to the system or to check
- * the existence and state of installed modules.
+ * the existence and state of installed modules.</p>
  *
  * @author Thomas Morgner
  */
