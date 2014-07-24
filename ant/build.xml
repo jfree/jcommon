@@ -1,4 +1,4 @@
-<!-- An ANT build file for JCommon. -->
+!-- An ANT build file for JCommon. -->
 
 <!-- Written by David Gilbert. -->
 <!-- 24-Jan-2003 -->
@@ -135,29 +135,6 @@
 
   </target>
 
-  <!-- Compile the JUnit test classes -->
-  <target name="compile-junit-tests" depends="compile"
-    description="Compile the JUnit tests for JCommon.">
-
-    <!-- create a temp build directory -->
-    <mkdir dir="build"/>
-
-    <!-- compile the source -->
-    <javac srcdir="src/test/java" destdir="${builddir}"
-      deprecation="${build.deprecation}" debug="${build.debug}"
-      optimize="${build.optimize}" target="${build.target}" source="${build.source}">
-      <classpath refid="junit.classpath"/>
-    </javac>
-
-    <!-- make the jar -->
-    <jar jarfile="${junit-dir}/${jcommon-junit-jar-file}"
-      basedir="build"/>
-
-    <!-- delete the temp directory -->
-    <delete dir="build"/>
-
-  </target>
-
   <!-- Generate the JCommon JavaDoc HTML pages -->
   <target name="javadoc" depends="initialise">
     <delete dir="javadoc"/>
@@ -208,10 +185,6 @@
     <!-- copy across maven xml files -->
     <copy file="pom.xml" tofile="distribution/pom.xml"/>
 
-    <!-- copy across junit test jar file -->
-    <copy file="${junit-dir}/${jcommon-junit-jar-file}"
-      tofile="distribution/${jcommon-junit-jar-file}"/>
-
     <!-- copy across junit jar file -->
     <copy file="${junit-dir}/${junit-jar-file}" tofile="distribution/lib/junit.jar"/>
 
@@ -234,7 +207,7 @@
   </target>
 
   <!-- Make .zip distribution for JCommon -->
-  <target name="zip" depends="compile-xml,compile-junit-tests">
+  <target name="zip" depends="compile-xml">
 
     <!-- make a temporary distribution directory -->
     <mkdir dir="distribution"/>
@@ -257,7 +230,7 @@
   </target>
 
   <!-- Make .tar.gz distribution for JCommon -->
-  <target name="targz" depends="compile-xml,compile-junit-tests">
+  <target name="targz" depends="compile-xml">
 
     <!-- make a temporary distribution directory -->
     <mkdir dir="distribution"/>
@@ -321,7 +294,7 @@
 
   <!-- ALL -->
   <target name="all"
-    depends="compile,compile-xml,compile-junit-tests,javadoc,zip,targz,maven-bundle"
+    depends="compile,compile-xml,javadoc,zip,targz,maven-bundle"
     description="Compiles JCommon, builds the jar files, generates the Javadoc HTML pages and creates distribution files (.zip and .tar.gz).">
   </target>
 
