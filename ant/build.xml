@@ -211,10 +211,6 @@
 
     <!-- copy across maven xml files -->
     <copy file="pom.xml" tofile="distribution/pom.xml"/>
-    <copy file="maven-jcommon-project.xml"
-        tofile="distribution/maven-jcommon-project.xml"/>
-    <copy file="maven-jcommon-xml-project.xml"
-        tofile="distribution/maven-jcommon-xml-project.xml"/>
 
     <!-- copy across junit test jar file -->
     <copy file="${junit-dir}/${jcommon-junit-jar-file}"
@@ -301,12 +297,7 @@
          <token key="VERSION" value="${jcommon.version}"/>
        </replacetokens>
     </filterchain>
-    <copy file="maven-jcommon-project.xml" tofile="distribution/project.xml">
-	<filterchain refid="version.filters"/>
-    </copy>
     
-<!--    
-    <copy file="maven-jcommon-project.xml" tofile="distribution/project.xml"/> -->
     <!-- copy across runtime jar file -->
     <copy file="${jcommon-jar-file}" tofile="distribution/${jcommon-jar-file}"/>
 
@@ -320,10 +311,7 @@
     <mkdir dir="distribution"/>
     <!-- copy across LICENCE -->
     <copy file="LICENSE" tofile="distribution/LICENSE"/>
-    <copy file="maven-jcommon-xml-project.xml" tofile="distribution/project.xml">
-	<filterchain refid="version.filters"/>
-    </copy>
-<!--    <copy file="maven-jcommon-xml-project.xml" tofile="distribution/project.xml"/>-->
+
     <!-- copy across runtime jar file -->
     <copy file="${jcommon-xml-jar-file}" tofile="distribution/${jcommon-xml-jar-file}"/>
 
