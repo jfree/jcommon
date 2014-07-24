@@ -32,6 +32,7 @@
     </path>
 
     <path id="junit.classpath">
+      <pathelement location="${jcommon-jar-file}"/>
       <pathelement location="${lib}/${jaxp-jar-file}"/>
       <pathelement location="${junit-dir}/${junit-jar-file}"/>
     </path>
