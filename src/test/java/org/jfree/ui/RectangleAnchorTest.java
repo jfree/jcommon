@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2014, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2015, by Object Refinery Limited and Contributors.
  * 
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -27,21 +27,21 @@
  * ------------------------
  * RectangleAnchorTest.java
  * ------------------------
- * (C) Copyright 2004-2014, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2004-2015, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   -;
  *
- * $Id: RectangleAnchorTest.java,v 1.3 2007/11/02 17:50:37 taqua Exp $
- *
  * Changes
  * -------
  * 08-Jan-2004 : Version 1 (DG);
+ * 17-Feb-2015 : Add tests (DG);
  *
  */
 
 package org.jfree.ui;
 
+import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
@@ -72,10 +72,35 @@ public class RectangleAnchorTest extends TestCase {
      *
      * @param name  the name of the tests.
      */
-    public RectangleAnchorTest(final String name) {
+    public RectangleAnchorTest(String name) {
         super(name);
     }
 
+    /**
+     * Tests for the createRectangle() method.
+     */
+    public void testCreateRectangle() {
+        Size2D s = new Size2D(3.0, 8.0);
+        assertEquals(new Rectangle2D.Double(-0.5, -2.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.CENTER));
+        assertEquals(new Rectangle2D.Double(1.0, -2.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.LEFT));
+        assertEquals(new Rectangle2D.Double(-2.0, -2.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.RIGHT));
+        assertEquals(new Rectangle2D.Double(-0.5, 2.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.TOP));
+        assertEquals(new Rectangle2D.Double(1.0, 2.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.TOP_LEFT));
+        assertEquals(new Rectangle2D.Double(-2.0, 2.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.TOP_RIGHT));
+        assertEquals(new Rectangle2D.Double(-0.5, -6.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.BOTTOM));
+        assertEquals(new Rectangle2D.Double(1.0, -6.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.BOTTOM_LEFT));
+        assertEquals(new Rectangle2D.Double(-2.0, -6.0, 3.0, 8.0), 
+                RectangleAnchor.createRectangle(s, 1.0, 2.0, RectangleAnchor.BOTTOM_RIGHT));
+    }
+    
     /**
      * Tests the equals() method.
      */
@@ -87,25 +112,22 @@ public class RectangleAnchorTest extends TestCase {
      * Serialize an instance, restore it, and check for identity.
      */
     public void testSerialization() {
-
-        final RectangleAnchor a1 = RectangleAnchor.RIGHT;
+        RectangleAnchor a1 = RectangleAnchor.RIGHT;
         RectangleAnchor a2 = null;
-
         try {
-            final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            final ObjectOutput out = new ObjectOutputStream(buffer);
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            ObjectOutput out = new ObjectOutputStream(buffer);
             out.writeObject(a1);
             out.close();
 
-            final ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+            ObjectInput in = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()));
             a2 = (RectangleAnchor) in.readObject();
             in.close();
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            System.err.println(e.toString());
         }
         assertTrue(a1 == a2); 
-
     }
 
 }

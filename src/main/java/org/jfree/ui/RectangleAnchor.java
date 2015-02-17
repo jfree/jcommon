@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2005, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2015, by Object Refinery Limited and Contributors.
  * 
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -27,12 +27,10 @@
  * --------------------
  * RectangleAnchor.java
  * --------------------
- * (C) Copyright 2003-2005, by Object Refinery Limited.
+ * (C) Copyright 2003-2015, by Object Refinery Limited.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   -;
- *
- * $Id: RectangleAnchor.java,v 1.6 2005/10/18 13:18:34 mungady Exp $
  *
  * Changes:
  * --------
@@ -40,7 +38,8 @@
  * 01-Apr-2004 : Changed java.awt.geom.Dimension2D to org.jfree.ui.Size2D 
  *               because of JDK bug 4976448 which persists on JDK 1.3.1 (DG);
  * 21-Jan-2005 : Changed return type of coordinates() method (DG);
- * 
+ * 17-Feb-2015 : Fixes for createRectangle() (DG);
+ *
  */
 
 package org.jfree.ui;
@@ -52,8 +51,6 @@ import java.io.Serializable;
 
 /**
  * Used to indicate an anchor point for a rectangle.
- *
- * @author David Gilbert
  */
 public final class RectangleAnchor implements Serializable {
 
@@ -104,7 +101,7 @@ public final class RectangleAnchor implements Serializable {
      *
      * @param name  the name.
      */
-    private RectangleAnchor(final String name) {
+    private RectangleAnchor(String name) {
         this.name = name;
     }
 
@@ -194,66 +191,41 @@ public final class RectangleAnchor implements Serializable {
     
     /**
      * Creates a new rectangle with the specified dimensions that is aligned to
-     * the given anchor point <code>(anchorX, anchorY)</code>.
+     * the given anchor point {@code (anchorX, anchorY)}.
      * 
-     * @param dimensions  the dimensions (<code>null</code> not permitted).
+     * @param dimensions  the dimensions ({@code null} not permitted).
      * @param anchorX  the x-anchor.
      * @param anchorY  the y-anchor.
-     * @param anchor  the anchor (<code>null</code> not permitted).
+     * @param anchor  the anchor ({@code null} not permitted).
      * 
      * @return A rectangle.
      */
-    public static Rectangle2D createRectangle(final Size2D dimensions,
-                                              final double anchorX,
-                                              final double anchorY,
-                                              final RectangleAnchor anchor) {
+    public static Rectangle2D createRectangle(Size2D dimensions, 
+            double anchorX, double anchorY, RectangleAnchor anchor) {
         Rectangle2D result = null;
         final double w = dimensions.getWidth();
         final double h = dimensions.getHeight();
         if (anchor == RectangleAnchor.CENTER) {
-            result = new Rectangle2D.Double(
-                anchorX - w / 2.0, anchorY - h / 2.0, w, h
-            );
-        }
-        else if (anchor == RectangleAnchor.TOP) {
-            result = new Rectangle2D.Double(
-                anchorX - w / 2.0, anchorY - h / 2.0, w, h
-            );
-        }
-        else if (anchor == RectangleAnchor.BOTTOM) {
-            result = new Rectangle2D.Double(
-                anchorX - w / 2.0, anchorY - h / 2.0, w, h
-            );
-        }
-        else if (anchor == RectangleAnchor.LEFT) {
-            result = new Rectangle2D.Double(
-                anchorX, anchorY - h / 2.0, w, h
-            );
-        }
-        else if (anchor == RectangleAnchor.RIGHT) {
-            result = new Rectangle2D.Double(
-                anchorX - w, anchorY - h / 2.0, w, h
-            );
-        }
-        else if (anchor == RectangleAnchor.TOP_LEFT) {
-            result = new Rectangle2D.Double(
-                anchorX - w / 2.0, anchorY - h / 2.0, w, h
-            );
-        }
-        else if (anchor == RectangleAnchor.TOP_RIGHT) {
-            result = new Rectangle2D.Double(
-                anchorX - w / 2.0, anchorY - h / 2.0, w, h
-            );
-        }
-        else if (anchor == RectangleAnchor.BOTTOM_LEFT) {
-            result = new Rectangle2D.Double(
-                anchorX - w / 2.0, anchorY - h / 2.0, w, h
-            );
-        }
-        else if (anchor == RectangleAnchor.BOTTOM_RIGHT) {
-            result = new Rectangle2D.Double(
-                anchorX - w / 2.0, anchorY - h / 2.0, w, h
-            );
+            result = new Rectangle2D.Double(anchorX - w / 2.0, 
+                    anchorY - h / 2.0, w, h);
+        } else if (anchor == RectangleAnchor.TOP) {
+            result = new Rectangle2D.Double(anchorX - w / 2.0, anchorY, w, h);
+        } else if (anchor == RectangleAnchor.BOTTOM) {
+            result = new Rectangle2D.Double(anchorX - w / 2.0, anchorY - h, 
+                    w, h);
+        } else if (anchor == RectangleAnchor.LEFT) {
+            result = new Rectangle2D.Double(anchorX, anchorY - h / 2.0, w, h);
+        } else if (anchor == RectangleAnchor.RIGHT) {
+            result = new Rectangle2D.Double(anchorX - w, anchorY - h / 2.0, 
+                    w, h);
+        } else if (anchor == RectangleAnchor.TOP_LEFT) {
+            result = new Rectangle2D.Double(anchorX, anchorY, w, h);
+        } else if (anchor == RectangleAnchor.TOP_RIGHT) {
+            result = new Rectangle2D.Double(anchorX - w, anchorY, w, h);
+        } else if (anchor == RectangleAnchor.BOTTOM_LEFT) {
+            result = new Rectangle2D.Double(anchorX, anchorY - h, w, h);
+        } else if (anchor == RectangleAnchor.BOTTOM_RIGHT) {
+            result = new Rectangle2D.Double(anchorX - w, anchorY - h, w, h);
         }
         return result;
     }
