@@ -101,15 +101,6 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * 9 Nov 2001 plus two months should be 9 Jan 2002.
-     */
-    public void testAddMonthsTo9Nov2001() {
-        final SerialDate jan9Y2002 = SerialDate.addMonths(2, this.nov9Y2001);
-        final SerialDate answer = SerialDate.createInstance(9, 1, 2002);
-        assertEquals(answer, jan9Y2002);
-    }
-
-    /**
      * A test case for a reported bug, now fixed.
      */
     public void testAddMonthsTo5Oct2003() {
@@ -582,6 +573,8 @@ public class SerialDateTest extends TestCase {
         assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(29, JANUARY, 1900)));
         assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(28, JANUARY, 1900)));
         assertEquals(d(27, FEBRUARY, 1900), addMonths(1, d(27, JANUARY, 1900)));
+
+        assertEquals(d(9, JANUARY, 2002), addMonths(2, d(9, NOVEMBER, 2001)));
 
         assertEquals(d(30, JUNE, 1900), addMonths(5, d(31, JANUARY, 1900)));
         assertEquals(d(30, JUNE, 1901), addMonths(17, d(31, JANUARY, 1900)));
