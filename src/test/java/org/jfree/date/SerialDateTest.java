@@ -147,7 +147,6 @@ public class SerialDateTest extends TestCase {
         assertEquals(TUESDAY, stringToWeekdayCode("tuesday"));
         assertEquals(TUESDAY, stringToWeekdayCode("TUESDAY"));
         assertEquals(TUESDAY, stringToWeekdayCode("tue"));
-        //assertEquals(TUESDAY, stringToWeekdayCode("tues"));
 
         assertEquals(WEDNESDAY, stringToWeekdayCode("Wednesday"));
         assertEquals(WEDNESDAY, stringToWeekdayCode(" Wednesday "));
@@ -162,7 +161,6 @@ public class SerialDateTest extends TestCase {
         assertEquals(THURSDAY, stringToWeekdayCode("thursday"));
         assertEquals(THURSDAY, stringToWeekdayCode("THURSDAY"));
         assertEquals(THURSDAY, stringToWeekdayCode("thu"));
-        //assertEquals(THURSDAY, stringToWeekdayCode("thurs"));
 
         assertEquals(FRIDAY, stringToWeekdayCode("Friday"));
         assertEquals(FRIDAY, stringToWeekdayCode(" Friday "));
