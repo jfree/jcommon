@@ -759,8 +759,8 @@ public abstract class SerialDate implements Comparable,
             case SerialDate.THIRD_WEEK_IN_MONTH : return "Third";
             case SerialDate.FOURTH_WEEK_IN_MONTH : return "Fourth";
             case SerialDate.LAST_WEEK_IN_MONTH : return "Last";
-            default :
-                return "SerialDate.weekInMonthToString(): invalid code.";
+            default : throw new IllegalArgumentException(
+                "Invalid week-in-the-month code.");
         }
 
     }
@@ -780,7 +780,8 @@ public abstract class SerialDate implements Comparable,
             case SerialDate.PRECEDING : return "Preceding";
             case SerialDate.NEAREST : return "Nearest";
             case SerialDate.FOLLOWING : return "Following";
-            default : return "ERROR : Relative To String";
+            default : throw new IllegalArgumentException(
+                "Invalid relative-to-string code.");
         }
 
     }
