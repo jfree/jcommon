@@ -501,7 +501,7 @@ public class TextUtilities {
             return;
         }
         if (angle == 0.0) {
-            drawAlignedString(text, g2, textY, textY, TextAnchor.BASELINE_LEFT);
+            drawAlignedString(text, g2, textX, textY, TextAnchor.BASELINE_LEFT);
             return;
         }
         
