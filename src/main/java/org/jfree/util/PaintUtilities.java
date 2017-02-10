@@ -2,7 +2,7 @@
  * JCommon : a free general purpose class library for the Java(tm) platform
  * ========================================================================
  *
- * (C) Copyright 2000-2016, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2017, by Object Refinery Limited and Contributors.
  * 
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
@@ -53,7 +53,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
 /**
- * Utility code that relates to {@ code Paint} objects.
+ * Utility code that relates to {@code Paint} objects.
  */
 public class PaintUtilities {
 
