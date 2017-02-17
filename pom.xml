@@ -13,13 +13,6 @@
     <version>1.0.24</version>
     <packaging>jar</packaging>
 
-    <!-- this is required to host it on Sonatype's OSSRH -->
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
-
     <organization>
         <name>JFree.org</name>
         <url>http://www.jfree.org/</url>
@@ -143,7 +136,7 @@
             <plugin>
               <groupId>org.sonatype.plugins</groupId>
               <artifactId>nexus-staging-maven-plugin</artifactId>
-              <version>1.6.2</version>
+              <version>1.6.7</version>
               <extensions>true</extensions>
               <configuration>
                 <serverId>ossrh</serverId>
