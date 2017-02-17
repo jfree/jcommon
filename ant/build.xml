@@ -11,10 +11,6 @@
 <!-- A "../javadoc" directory will be created for the Javadoc -->
 <!-- HTML pages. -->
 
-<!-- The script should work for the distribution and also the CVS -->
-<!-- repository (which is shared with the JFreeChart project in a -->
-<!-- slightly messy way). -->
-
 <project name="jcommon" default="all" basedir="..">
 
   <!-- Initialisation. -->
