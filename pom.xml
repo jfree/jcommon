@@ -36,10 +36,12 @@
     </scm>
 
     <developers>
-    <!--
-    For an up to date list of developers and contributors have a look at
-    the project info implementations.
-    -->
+      <developer>
+        <name>David Gilbert</name>
+        <email>dave@jfree.org<email>
+        <organization>Object Refinery Limited</organization>
+        <organizationUrl>http://www.object-refinery.com</organizationUrl>
+      </developer>
     </developers>
     <licenses>
         <license>
