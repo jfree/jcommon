@@ -50,44 +50,44 @@ Changes in each version are listed here:
 1.0.23: (24-Jul-2014) Reorganised directories to align to Maven standard.
                       Updated pom file.  Fixed Javadoc warnings for JDK 8.
 
-1.0.22: (28-Feb-2014) Fix for endless loop in TextUtilities.createTextBlock().
+1.0.22: (28-Feb-2014) Fix for endless loop in `TextUtilities.createTextBlock()`.
 
-1.0.21: (24-Oct-2013) Modified drawRotatedString() to call drawAlignedString()
+1.0.21: (24-Oct-2013) Modified `drawRotatedString()` to call `drawAlignedString()`
                       when the rotation angle is 0.0.  This provides benefits
                       downstream for JFreeChart, JFreeSVG and OrsonPDF.
 
-1.0.20: (01-Sep-2013) Fixed TextFragment.draw() to respect TextAnchor argument.
+1.0.20: (01-Sep-2013) Fixed `TextFragment.draw()` to respect `TextAnchor` argument.
 
 1.0.19: (30-Aug-2013) Updated Licences.java so that complete licence text is 
                       loaded on demand only (bug #1118).
 
-1.0.18: (23-Sep-2012) Fixed PaintList.equals() bug, fixed line break issue in
-                      TextUtilities;
+1.0.18: (23-Sep-2012) Fixed `PaintList.equals()` bug, fixed line break issue in
+                      `TextUtilities`;
 
-1.0.17: (17-Oct-2011) Updated SerialUtilities to support serialisation of
-                      Composite instances;
+1.0.17: (17-Oct-2011) Updated `SerialUtilities` to support serialisation of
+                      `Composite` instances;
 
 1.0.16: (17-Apr-2009) New release in conjunction with JFreeChart 1.0.13;
 
-1.0.15: (19-Dec-2008) New ResourceBundleWrapper class to enable applets to
+1.0.15: (19-Dec-2008) New `ResourceBundleWrapper` class to enable applets to
                       bypass codeBase lookup.  Updated Maven specs.
 
-1.0.14: (10-Sep-2008) Workaround added to PngEncoder, bug fix in ShapeList.
+1.0.14: (10-Sep-2008) Workaround added to `PngEncoder`, bug fix in `ShapeList`.
 
-1.0.13: (05-Jun-2008) Bug fixes for TextBox and ShapeUtilities.
+1.0.13: (05-Jun-2008) Bug fixes for `TextBox` and `ShapeUtilities`.
 
 1.0.12: (02-Nov-2007) Made the resource-loading and classloader selection more
         robust in cases where the jars were distributed over several
         classloaders.
 
-1.0.11: (19-Oct-2007) BugFix in the KeyedComboBoxModel causing
+1.0.11: (19-Oct-2007) BugFix in the `KeyedComboBoxModel` causing
         NullPointerExceptions on MacOS-X; Make sure that all resource-streams
         that get opened also get safely closed in case of errors.
 
-1.0.10: (21-May-2007) BugFix in the PackageSorter, Window positioning is now
+1.0.10: (21-May-2007) BugFix in the `PackageSorter`, Window positioning is now
         multi-screen aware.
 
-1.0.9 : (23-Mar-2007) Serialization fix in TextFragment.
+1.0.9 : (23-Mar-2007) Serialization fix in `TextFragment`.
 
 1.0.8 : (11-Dec-2006) Minor bugfixes in the synchronization of the Booting code
         and the FastStack.
