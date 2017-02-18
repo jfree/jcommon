@@ -1,7 +1,7 @@
 THE JCOMMON CLASS LIBRARY: Version 1.0.24
 =========================================
 
-17 February 2017
+18 February 2017
 
 (C)opyright, 2000-2017, by Object Refinery Limited and Contributors.
 
@@ -43,9 +43,9 @@ and Hari.
 ---------------
 Changes in each version are listed here:
 
-1.0.24: (17-Feb-2017) Fix for RectangleAnchor class, add handling for gradient
-                      paint in PaintUtilities, fix for bug in 
-                      drawRotatedString() method.
+1.0.24: (17-Feb-2017) Fix for `RectangleAnchor` class, add handling for gradient
+                      paint in `PaintUtilities`, fix for bug in 
+                      `drawRotatedString()` method.
 
 1.0.23: (24-Jul-2014) Reorganised directories to align to Maven standard.
                       Updated pom file.  Fixed Javadoc warnings for JDK 8.
