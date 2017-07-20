@@ -14,41 +14,6 @@ import java.util.*;
 
 public class BobsSerialDateTest extends TestCase{
 
-	public void testMonthCodeToString() throws Exception {
-		assertEquals("January", monthCodeToString(JANUARY));
-		assertEquals("February", monthCodeToString(FEBRUARY));
-		assertEquals("March", monthCodeToString(MARCH));
-		assertEquals("April", monthCodeToString(APRIL));
-		assertEquals("May", monthCodeToString(MAY));
-		assertEquals("June", monthCodeToString(JUNE));
-		assertEquals("July", monthCodeToString(JULY));
-		assertEquals("August", monthCodeToString(AUGUST));
-		assertEquals("September", monthCodeToString(SEPTEMBER));
-		assertEquals("October", monthCodeToString(OCTOBER));
-		assertEquals("November", monthCodeToString(NOVEMBER));
-		assertEquals("December", monthCodeToString(DECEMBER));
-
-		assertEquals("Jan", monthCodeToString(JANUARY, true));
-		assertEquals("Feb", monthCodeToString(FEBRUARY, true));
-		assertEquals("Mar", monthCodeToString(MARCH, true));
-		assertEquals("Apr", monthCodeToString(APRIL, true));
-		assertEquals("May", monthCodeToString(MAY, true));
-		assertEquals("Jun", monthCodeToString(JUNE, true));
-		assertEquals("Jul", monthCodeToString(JULY, true));
-		assertEquals("Aug", monthCodeToString(AUGUST, true));
-		assertEquals("Sep", monthCodeToString(SEPTEMBER, true));
-		assertEquals("Oct", monthCodeToString(OCTOBER, true));
-		assertEquals("Nov", monthCodeToString(NOVEMBER, true));
-		assertEquals("Dec", monthCodeToString(DECEMBER, true));
-
-		try {
-			monthCodeToString(-1);
-			fail("Invalid month code should throw exception");
-		} catch (IllegalArgumentException e) {
-		}
-
-	}
-
 	public void testStringToMonthCode() throws Exception {
 		assertEquals(JANUARY,stringToMonthCode("1"));
 		assertEquals(FEBRUARY,stringToMonthCode("2"));
