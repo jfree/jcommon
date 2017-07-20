@@ -12,16 +12,6 @@ import java.util.*;
 
 public class BobsSerialDateTest extends TestCase{
 
-	public void testWeekdayCodeToString() throws Exception {
-		assertEquals("Sunday", weekdayCodeToString(SUNDAY));
-		assertEquals("Monday", weekdayCodeToString(MONDAY));
-		assertEquals("Tuesday", weekdayCodeToString(TUESDAY));
-		assertEquals("Wednesday", weekdayCodeToString(WEDNESDAY));
-		assertEquals("Thursday", weekdayCodeToString(THURSDAY));
-		assertEquals("Friday", weekdayCodeToString(FRIDAY));
-		assertEquals("Saturday", weekdayCodeToString(SATURDAY));
-	}
-
 	public void testIsValidMonthCode() throws Exception {
 		for (int i = 1; i <= 12; i++)
 			assertTrue(isValidMonthCode(i));

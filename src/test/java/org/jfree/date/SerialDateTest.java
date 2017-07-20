@@ -166,17 +166,6 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * Problem that the conversion of days to strings returns the right result.  Actually, this
-     * result depends on the Locale so this test needs to be modified.
-     */
-    public void testWeekdayCodeToString() {
-
-        final String test = SerialDate.weekdayCodeToString(SerialDate.SATURDAY);
-        assertEquals("Saturday", test);
-
-    }
-
-    /**
      * Test the conversion of a string to a month.  Note that this test will fail if the default
      * locale doesn't use English month names...devise a better test!
      */
@@ -373,5 +362,18 @@ public class SerialDateTest extends TestCase {
         //assertEquals(SUNDAY,stringToWeekdayCode("sunday"));
         //assertEquals(SUNDAY,stringToWeekdayCode("SUNDAY"));
         //assertEquals(SUNDAY, stringToWeekdayCode("sun"));
+    }
+
+    /**
+     * Depends on the Locale so this test needs to be modified.
+     */
+    public void testWeekdayCodeToString() throws Exception {
+        assertEquals("Sunday", weekdayCodeToString(SUNDAY));
+        assertEquals("Monday", weekdayCodeToString(MONDAY));
+        assertEquals("Tuesday", weekdayCodeToString(TUESDAY));
+        assertEquals("Wednesday", weekdayCodeToString(WEDNESDAY));
+        assertEquals("Thursday", weekdayCodeToString(THURSDAY));
+        assertEquals("Friday", weekdayCodeToString(FRIDAY));
+        assertEquals("Saturday", weekdayCodeToString(SATURDAY));
     }
 }
