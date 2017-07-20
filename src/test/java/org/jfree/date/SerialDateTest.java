@@ -3,25 +3,25 @@
  * ========================================================================
  *
  * (C) Copyright 2000-2014, by Object Refinery Limited and Contributors.
- * 
+ *
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
- * This library is free software; you can redistribute it and/or modify it 
- * under the terms of the GNU Lesser General Public License as published by 
- * the Free Software Foundation; either version 2.1 of the License, or 
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
  * (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but 
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, 
- * USA.  
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  *
- * [Java is a trademark or registered trademark of Sun Microsystems, Inc. 
+ * [Java is a trademark or registered trademark of Sun Microsystems, Inc.
  * in the United States and other countries.]
  *
  * -------------------
@@ -63,6 +63,8 @@ import java.io.ObjectOutputStream;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
+import static org.jfree.date.SerialDate.*;
 
 /**
  * Some JUnit tests for the {@link SerialDate} class.
@@ -164,7 +166,7 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * Problem that the conversion of days to strings returns the right result.  Actually, this 
+     * Problem that the conversion of days to strings returns the right result.  Actually, this
      * result depends on the Locale so this test needs to be modified.
      */
     public void testWeekdayCodeToString() {
@@ -175,7 +177,7 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * Test the conversion of a string to a weekday.  Note that this test will fail if the 
+     * Test the conversion of a string to a weekday.  Note that this test will fail if the
      * default locale doesn't use English weekday names...devise a better test!
      */
     public void testStringToWeekday() {
@@ -291,7 +293,7 @@ public class SerialDateTest extends TestCase {
         assertEquals(d1, d2);
 
     }
-    
+
     /**
      * A test for bug report 1096282 (now fixed).
      */
@@ -307,20 +309,27 @@ public class SerialDateTest extends TestCase {
      */
     public void testAddMonths() {
         SerialDate d1 = SerialDate.createInstance(31, 5, 2004);
-        
+
         SerialDate d2 = SerialDate.addMonths(1, d1);
         assertEquals(30, d2.getDayOfMonth());
         assertEquals(6, d2.getMonth());
         assertEquals(2004, d2.getYYYY());
-        
+
         SerialDate d3 = SerialDate.addMonths(2, d1);
         assertEquals(31, d3.getDayOfMonth());
         assertEquals(7, d3.getMonth());
         assertEquals(2004, d3.getYYYY());
-        
+
         SerialDate d4 = SerialDate.addMonths(1, SerialDate.addMonths(1, d1));
         assertEquals(30, d4.getDayOfMonth());
         assertEquals(7, d4.getMonth());
         assertEquals(2004, d4.getYYYY());
+    }
+    public void testIsValidWeekdayCode() throws Exception {
+        for (int day = 1; day <= 7; day++) {
+            assertTrue(isValidWeekdayCode(day));
+        }
+        assertFalse(isValidWeekdayCode(0));
+        assertFalse(isValidWeekdayCode(8));
     }
 }

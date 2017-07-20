@@ -12,13 +12,6 @@ import java.util.*;
 
 public class BobsSerialDateTest extends TestCase{
 
-	public void testIsValidWeekdayCode() throws Exception {
-		for (int day = 1; day <= 7; day++)
-			assertTrue(isValidWeekdayCode(day));
-		assertFalse(isValidWeekdayCode(0));
-		assertFalse(isValidWeekdayCode(8));
-	}
-
 	public void testStringToWeekdayCode() throws Exception {
 
 		assertEquals(-1, stringToWeekdayCode("Hello"));
