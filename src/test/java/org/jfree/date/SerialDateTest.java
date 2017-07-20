@@ -166,23 +166,6 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * Test the conversion of a string to a month.  Note that this test will fail if the default
-     * locale doesn't use English month names...devise a better test!
-     */
-//    public void testStringToMonthCode() {
-//
-//        int m = SerialDate.stringToMonthCode("January");
-//        assertEquals(MonthConstants.JANUARY, m);
-//
-//        m = SerialDate.stringToMonthCode(" January ");
-//        assertEquals(MonthConstants.JANUARY, m);
-//
-//        m = SerialDate.stringToMonthCode("Jan");
-//        assertEquals(MonthConstants.JANUARY, m);
-//
-//    }
-
-    /**
      * Tests the conversion of a month code to a string.
      */
     public void testMonthCodeToStringCode() {
@@ -416,6 +399,9 @@ public class SerialDateTest extends TestCase {
         }
     }
 
+    /**
+     * This test will fail if the default locale doesn't use English month names. Devise a better test!
+     */
     public void testMonthCodeToString() throws Exception {
         assertEquals("January", monthCodeToString(JANUARY));
         assertEquals("February", monthCodeToString(FEBRUARY));
@@ -484,6 +470,45 @@ public class SerialDateTest extends TestCase {
             assertEquals(m, stringToMonthCode(monthCodeToString(m, true)));
         }
 
+        assertEquals(JANUARY,stringToMonthCode("January"));
+        assertEquals(FEBRUARY,stringToMonthCode("February"));
+        assertEquals(MARCH,stringToMonthCode("March"));
+        assertEquals(APRIL,stringToMonthCode("April"));
+        assertEquals(MAY,stringToMonthCode("May"));
+        assertEquals(JUNE,stringToMonthCode("June"));
+        assertEquals(JULY,stringToMonthCode("July"));
+        assertEquals(AUGUST,stringToMonthCode("August"));
+        assertEquals(SEPTEMBER,stringToMonthCode("September"));
+        assertEquals(OCTOBER,stringToMonthCode("October"));
+        assertEquals(NOVEMBER,stringToMonthCode("November"));
+        assertEquals(DECEMBER,stringToMonthCode("December"));
+
+        assertEquals(JANUARY,stringToMonthCode(" January "));
+        assertEquals(FEBRUARY,stringToMonthCode(" February "));
+        assertEquals(MARCH,stringToMonthCode(" March "));
+        assertEquals(APRIL,stringToMonthCode(" April "));
+        assertEquals(MAY,stringToMonthCode(" May "));
+        assertEquals(JUNE,stringToMonthCode(" June "));
+        assertEquals(JULY,stringToMonthCode(" July "));
+        assertEquals(AUGUST,stringToMonthCode(" August "));
+        assertEquals(SEPTEMBER,stringToMonthCode(" September "));
+        assertEquals(OCTOBER,stringToMonthCode(" October "));
+        assertEquals(NOVEMBER,stringToMonthCode(" November "));
+        assertEquals(DECEMBER,stringToMonthCode(" December "));
+
+        assertEquals(JANUARY,stringToMonthCode("Jan"));
+        assertEquals(FEBRUARY,stringToMonthCode("Feb"));
+        assertEquals(MARCH,stringToMonthCode("Mar"));
+        assertEquals(APRIL,stringToMonthCode("Apr"));
+        assertEquals(MAY,stringToMonthCode("May"));
+        assertEquals(JUNE,stringToMonthCode("Jun"));
+        assertEquals(JULY,stringToMonthCode("Jul"));
+        assertEquals(AUGUST,stringToMonthCode("Aug"));
+        assertEquals(SEPTEMBER,stringToMonthCode("Sep"));
+        assertEquals(OCTOBER,stringToMonthCode("Oct"));
+        assertEquals(NOVEMBER, stringToMonthCode("Nov"));
+        assertEquals(DECEMBER,stringToMonthCode("Dec"));
+
         //assertEquals(1,stringToMonthCode("jan"));
         //assertEquals(2,stringToMonthCode("feb"));
         //assertEquals(3,stringToMonthCode("mar"));
@@ -522,6 +547,19 @@ public class SerialDateTest extends TestCase {
         //assertEquals(10,stringToMonthCode("october"));
         //assertEquals(11,stringToMonthCode("november"));
         //assertEquals(12,stringToMonthCode("december"));
+
+        //assertEquals(1,stringToMonthCode(" january "));
+        //assertEquals(2,stringToMonthCode(" february "));
+        //assertEquals(3,stringToMonthCode(" march "));
+        //assertEquals(4,stringToMonthCode(" april "));
+        //assertEquals(5,stringToMonthCode(" may "));
+        //assertEquals(6,stringToMonthCode(" june "));
+        //assertEquals(7,stringToMonthCode(" july "));
+        //assertEquals(8,stringToMonthCode(" august "));
+        //assertEquals(9,stringToMonthCode(" september "));
+        //assertEquals(10,stringToMonthCode(" october "));
+        //assertEquals(11,stringToMonthCode(" november "));
+        //assertEquals(12,stringToMonthCode(" december "));
 
         //assertEquals(1,stringToMonthCode("JANUARY"));
         //assertEquals(2,stringToMonthCode("FEBRUARY"));
