@@ -14,62 +14,6 @@ import java.util.*;
 
 public class BobsSerialDateTest extends TestCase{
 
-	public void testIsValidWeekInMonthCode() throws Exception {
-		for (int w = 0; w <= 4; w++) {
-			assertTrue(isValidWeekInMonthCode(w));
-		}
-		assertFalse(isValidWeekInMonthCode(5));
-	}
-
-	public void testIsLeapYear() throws Exception {
-		assertFalse(isLeapYear(1900));
-		assertFalse(isLeapYear(1901));
-		assertFalse(isLeapYear(1902));
-		assertFalse(isLeapYear(1903));
-		assertTrue(isLeapYear(1904));
-		assertTrue(isLeapYear(1908));
-		assertFalse(isLeapYear(1955));
-		assertTrue(isLeapYear(1964));
-		assertTrue(isLeapYear(1980));
-		assertTrue(isLeapYear(2000));
-		assertFalse(isLeapYear(2001));
-		assertFalse(isLeapYear(2100));
-	}
-
-	public void testLeapYearCount() throws Exception {
-		assertEquals(0, leapYearCount(1900));
-		assertEquals(0, leapYearCount(1901));
-		assertEquals(0, leapYearCount(1902));
-		assertEquals(0, leapYearCount(1903));
-		assertEquals(1, leapYearCount(1904));
-		assertEquals(1, leapYearCount(1905));
-		assertEquals(1, leapYearCount(1906));
-		assertEquals(1, leapYearCount(1907));
-		assertEquals(2, leapYearCount(1908));
-		assertEquals(24, leapYearCount(1999));
-		assertEquals(25, leapYearCount(2001));
-		assertEquals(49, leapYearCount(2101));
-		assertEquals(73, leapYearCount(2201));
-		assertEquals(97, leapYearCount(2301));
-		assertEquals(122, leapYearCount(2401));
-	}
-
-	public void testLastDayOfMonth() throws Exception {
-		assertEquals(31, lastDayOfMonth(JANUARY, 1901));
-		assertEquals(28, lastDayOfMonth(FEBRUARY, 1901));
-		assertEquals(31, lastDayOfMonth(MARCH, 1901));
-		assertEquals(30, lastDayOfMonth(APRIL, 1901));
-		assertEquals(31, lastDayOfMonth(MAY, 1901));
-		assertEquals(30, lastDayOfMonth(JUNE, 1901));
-		assertEquals(31, lastDayOfMonth(JULY, 1901));
-		assertEquals(31, lastDayOfMonth(AUGUST, 1901));
-		assertEquals(30, lastDayOfMonth(SEPTEMBER, 1901));
-		assertEquals(31, lastDayOfMonth(OCTOBER, 1901));
-		assertEquals(30, lastDayOfMonth(NOVEMBER, 1901));
-		assertEquals(31, lastDayOfMonth(DECEMBER, 1901));
-		assertEquals(29, lastDayOfMonth(FEBRUARY, 1904));
-	}
-
 	public void testAddDays() throws Exception {
 		SerialDate newYears = d(1, JANUARY, 1900);
 		assertEquals(d(2, JANUARY, 1900), addDays(1, newYears));
