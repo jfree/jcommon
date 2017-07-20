@@ -8,30 +8,11 @@ import java.util.*;
 /**
  * This test is copied from the Robert C. Martin's Clean Code book. The commented lines are tests which currently do not
  * pass.
+ *
+ * I am merging this test into the SerialDateTest class, check the version control system for more details.
  */
 
 public class BobsSerialDateTest extends TestCase{
-
-	public void testMonthToQuarter() throws Exception {
-		assertEquals(1, monthCodeToQuarter(JANUARY));
-		assertEquals(1, monthCodeToQuarter(FEBRUARY));
-		assertEquals(1, monthCodeToQuarter(MARCH));
-		assertEquals(2, monthCodeToQuarter(APRIL));
-		assertEquals(2, monthCodeToQuarter(MAY));
-		assertEquals(2, monthCodeToQuarter(JUNE));
-		assertEquals(3, monthCodeToQuarter(JULY));
-		assertEquals(3, monthCodeToQuarter(AUGUST));
-		assertEquals(3, monthCodeToQuarter(SEPTEMBER));
-		assertEquals(4, monthCodeToQuarter(OCTOBER));
-		assertEquals(4, monthCodeToQuarter(NOVEMBER));
-		assertEquals(4, monthCodeToQuarter(DECEMBER));
-
-		try {
-			monthCodeToQuarter(-1);
-			fail("Invalid Month Code should throw exception");
-		} catch (IllegalArgumentException e) {
-		}
-	}
 
 	public void testMonthCodeToString() throws Exception {
 		assertEquals("January", monthCodeToString(JANUARY));
