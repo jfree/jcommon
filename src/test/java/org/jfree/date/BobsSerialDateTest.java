@@ -14,38 +14,8 @@ import java.util.*;
 
 public class BobsSerialDateTest extends TestCase{
 
-	public void testAddDays() throws Exception {
-		SerialDate newYears = d(1, JANUARY, 1900);
-		assertEquals(d(2, JANUARY, 1900), addDays(1, newYears));
-		assertEquals(d(1, FEBRUARY, 1900), addDays(31, newYears));
-		assertEquals(d(1, JANUARY, 1901), addDays(365, newYears));
-		assertEquals(d(31, DECEMBER, 1904), addDays(5 * 365, newYears));
-	}
-
 	private static SpreadsheetDate d(int day, int month, int year) {return new
 			SpreadsheetDate(day, month, year);}
-
-	public void testAddMonths() throws Exception {
-		assertEquals(d(1, FEBRUARY, 1900), addMonths(1, d(1, JANUARY, 1900)));
-		assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(31, JANUARY, 1900)));
-		assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(30, JANUARY, 1900)));
-		assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(29, JANUARY, 1900)));
-		assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(28, JANUARY, 1900)));
-		assertEquals(d(27, FEBRUARY, 1900), addMonths(1, d(27, JANUARY, 1900)));
-
-		assertEquals(d(30, JUNE, 1900), addMonths(5, d(31, JANUARY, 1900)));
-		assertEquals(d(30, JUNE, 1901), addMonths(17, d(31, JANUARY, 1900)));
-
-		assertEquals(d(29, FEBRUARY, 1904), addMonths(49, d(31, JANUARY, 1900)));
-
-	}
-
-	public void testAddYears() throws Exception {
-		assertEquals(d(1, JANUARY, 1901), addYears(1, d(1, JANUARY, 1900)));
-		assertEquals(d(28, FEBRUARY, 1905), addYears(1, d(29, FEBRUARY, 1904)));
-		assertEquals(d(28, FEBRUARY, 1905), addYears(1, d(28, FEBRUARY, 1904)));
-		assertEquals(d(28, FEBRUARY, 1904), addYears(1, d(28, FEBRUARY, 1903)));
-	}
 
 	public void testGetPreviousDayOfWeek() throws Exception {
 		assertEquals(d(24, FEBRUARY, 2006), getPreviousDayOfWeek(FRIDAY, d(1, MARCH, 2006)));

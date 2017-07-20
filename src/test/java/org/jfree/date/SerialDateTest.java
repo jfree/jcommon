@@ -213,24 +213,24 @@ public class SerialDateTest extends TestCase {
     /**
      * Miscellaneous tests for the addMonths() method.
      */
-    public void testAddMonths() {
-        SerialDate d1 = SerialDate.createInstance(31, 5, 2004);
-
-        SerialDate d2 = SerialDate.addMonths(1, d1);
-        assertEquals(30, d2.getDayOfMonth());
-        assertEquals(6, d2.getMonth());
-        assertEquals(2004, d2.getYYYY());
-
-        SerialDate d3 = SerialDate.addMonths(2, d1);
-        assertEquals(31, d3.getDayOfMonth());
-        assertEquals(7, d3.getMonth());
-        assertEquals(2004, d3.getYYYY());
-
-        SerialDate d4 = SerialDate.addMonths(1, SerialDate.addMonths(1, d1));
-        assertEquals(30, d4.getDayOfMonth());
-        assertEquals(7, d4.getMonth());
-        assertEquals(2004, d4.getYYYY());
-    }
+//    public void testAddMonths() {
+//        SerialDate d1 = SerialDate.createInstance(31, 5, 2004);
+//
+//        SerialDate d2 = SerialDate.addMonths(1, d1);
+//        assertEquals(30, d2.getDayOfMonth());
+//        assertEquals(6, d2.getMonth());
+//        assertEquals(2004, d2.getYYYY());
+//
+//        SerialDate d3 = SerialDate.addMonths(2, d1);
+//        assertEquals(31, d3.getDayOfMonth());
+//        assertEquals(7, d3.getMonth());
+//        assertEquals(2004, d3.getYYYY());
+//
+//        SerialDate d4 = SerialDate.addMonths(1, SerialDate.addMonths(1, d1));
+//        assertEquals(30, d4.getDayOfMonth());
+//        assertEquals(7, d4.getMonth());
+//        assertEquals(2004, d4.getYYYY());
+//    }
 
     public void testIsValidWeekdayCode() throws Exception {
         for (int day = 1; day <= 7; day++) {
@@ -583,4 +583,41 @@ public class SerialDateTest extends TestCase {
         assertEquals(31, lastDayOfMonth(DECEMBER, 1901));
         assertEquals(29, lastDayOfMonth(FEBRUARY, 1904));
     }
+
+    private static SpreadsheetDate d(int day, int month, int year) {
+        return new SpreadsheetDate(day, month, year);
+    }
+
+    public void testAddDays() throws Exception {
+        SerialDate newYears = d(1, JANUARY, 1900);
+        assertEquals(d(2, JANUARY, 1900), addDays(1, newYears));
+        assertEquals(d(1, FEBRUARY, 1900), addDays(31, newYears));
+        assertEquals(d(1, JANUARY, 1901), addDays(365, newYears));
+        assertEquals(d(31, DECEMBER, 1904), addDays(5 * 365, newYears));
+    }
+
+    public void testAddMonths() throws Exception {
+        assertEquals(d(1, FEBRUARY, 1900), addMonths(1, d(1, JANUARY, 1900)));
+        assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(31, JANUARY, 1900)));
+        assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(30, JANUARY, 1900)));
+        assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(29, JANUARY, 1900)));
+        assertEquals(d(28, FEBRUARY, 1900), addMonths(1, d(28, JANUARY, 1900)));
+        assertEquals(d(27, FEBRUARY, 1900), addMonths(1, d(27, JANUARY, 1900)));
+
+        assertEquals(d(30, JUNE, 1900), addMonths(5, d(31, JANUARY, 1900)));
+        assertEquals(d(30, JUNE, 1901), addMonths(17, d(31, JANUARY, 1900)));
+
+        assertEquals(d(29, FEBRUARY, 1904), addMonths(49, d(31, JANUARY, 1900)));
+    }
+
+    public void testAddYears() throws Exception {
+        assertEquals(d(1, JANUARY, 1901), addYears(1, d(1, JANUARY, 1900)));
+        assertEquals(d(28, FEBRUARY, 1905), addYears(1, d(29, FEBRUARY, 1904)));
+        assertEquals(d(28, FEBRUARY, 1905), addYears(1, d(28, FEBRUARY, 1904)));
+        assertEquals(d(28, FEBRUARY, 1904), addYears(1, d(28, FEBRUARY, 1903)));
+    }
+
+
+
+
 }
