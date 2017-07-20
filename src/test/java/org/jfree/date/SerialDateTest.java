@@ -177,19 +177,6 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * Test the conversion of a string to a weekday.  Note that this test will fail if the
-     * default locale doesn't use English weekday names...devise a better test!
-     */
-    public void testStringToWeekday() {
-
-        int weekday;
-
-        weekday = SerialDate.stringToWeekdayCode(" Wednesday ");
-        assertEquals(SerialDate.WEDNESDAY, weekday);
-
-    }
-
-    /**
      * Test the conversion of a string to a month.  Note that this test will fail if the default
      * locale doesn't use English month names...devise a better test!
      */
@@ -330,15 +317,21 @@ public class SerialDateTest extends TestCase {
         assertFalse(isValidWeekdayCode(8));
     }
 
+    /**
+     * This test will fail if the default locale doesn't use English weekday names. Devise a better test!
+     */
     public void testStringToWeekdayCode() throws Exception {
         assertEquals(-1, stringToWeekdayCode("Hello"));
+
         assertEquals(MONDAY, stringToWeekdayCode("Monday"));
+        assertEquals(MONDAY, stringToWeekdayCode(" Monday "));
         assertEquals(MONDAY, stringToWeekdayCode("Mon"));
         //TODO assertEquals(MONDAY,stringToWeekdayCode("monday"));
         //assertEquals(MONDAY,stringToWeekdayCode("MONDAY"));
         //assertEquals(MONDAY, stringToWeekdayCode("mon"));
 
         assertEquals(TUESDAY, stringToWeekdayCode("Tuesday"));
+        assertEquals(TUESDAY, stringToWeekdayCode(" Tuesday "));
         assertEquals(TUESDAY, stringToWeekdayCode("Tue"));
         //assertEquals(TUESDAY,stringToWeekdayCode("tuesday"));
         //assertEquals(TUESDAY,stringToWeekdayCode("TUESDAY"));
@@ -346,12 +339,14 @@ public class SerialDateTest extends TestCase {
         //assertEquals(TUESDAY, stringToWeekdayCode("tues"));
 
         assertEquals(WEDNESDAY, stringToWeekdayCode("Wednesday"));
+        assertEquals(WEDNESDAY, stringToWeekdayCode(" Wednesday "));
         assertEquals(WEDNESDAY, stringToWeekdayCode("Wed"));
         //assertEquals(WEDNESDAY,stringToWeekdayCode("wednesday"));
         //assertEquals(WEDNESDAY,stringToWeekdayCode("WEDNESDAY"));
         //assertEquals(WEDNESDAY, stringToWeekdayCode("wed"));
 
         assertEquals(THURSDAY, stringToWeekdayCode("Thursday"));
+        assertEquals(THURSDAY, stringToWeekdayCode(" Thursday "));
         assertEquals(THURSDAY, stringToWeekdayCode("Thu"));
         //assertEquals(THURSDAY,stringToWeekdayCode("thursday"));
         //assertEquals(THURSDAY,stringToWeekdayCode("THURSDAY"));
@@ -359,18 +354,21 @@ public class SerialDateTest extends TestCase {
         //assertEquals(THURSDAY, stringToWeekdayCode("thurs"));
 
         assertEquals(FRIDAY, stringToWeekdayCode("Friday"));
+        assertEquals(FRIDAY, stringToWeekdayCode(" Friday "));
         assertEquals(FRIDAY, stringToWeekdayCode("Fri"));
         //assertEquals(FRIDAY,stringToWeekdayCode("friday"));
         //assertEquals(FRIDAY,stringToWeekdayCode("FRIDAY"));
         //assertEquals(FRIDAY, stringToWeekdayCode("fri"));
 
         assertEquals(SATURDAY, stringToWeekdayCode("Saturday"));
+        assertEquals(SATURDAY, stringToWeekdayCode(" Saturday "));
         assertEquals(SATURDAY, stringToWeekdayCode("Sat"));
         //assertEquals(SATURDAY,stringToWeekdayCode("saturday"));
         //assertEquals(SATURDAY,stringToWeekdayCode("SATURDAY"));
         //assertEquals(SATURDAY, stringToWeekdayCode("sat"));
 
         assertEquals(SUNDAY, stringToWeekdayCode("Sunday"));
+        assertEquals(SUNDAY, stringToWeekdayCode(" Sunday "));
         assertEquals(SUNDAY, stringToWeekdayCode("Sun"));
         //assertEquals(SUNDAY,stringToWeekdayCode("sunday"));
         //assertEquals(SUNDAY,stringToWeekdayCode("SUNDAY"));
