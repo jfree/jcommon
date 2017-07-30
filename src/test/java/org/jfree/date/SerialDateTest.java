@@ -90,16 +90,6 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * Tests the conversion of a month code to a string.
-     */
-    public void testMonthCodeToStringCode() {
-
-        final String test = SerialDate.monthCodeToString(MonthConstants.DECEMBER);
-        assertEquals("December", test);
-
-    }
-
-    /**
      * Serialize an instance, restore it, and check for equality.
      */
     public void testSerialization() {
