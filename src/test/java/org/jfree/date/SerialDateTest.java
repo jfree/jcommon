@@ -176,55 +176,6 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * 1900 is not a leap year.
-     */
-    public void testIsNotLeapYear1900() {
-        assertTrue(!SerialDate.isLeapYear(1900));
-    }
-
-    /**
-     * 2000 is a leap year.
-     */
-    public void testIsLeapYear2000() {
-        assertTrue(SerialDate.isLeapYear(2000));
-    }
-
-    /**
-     * The number of leap years from 1900 up-to-and-including 1899 is 0.
-     */
-    public void testLeapYearCount1899() {
-        assertEquals(SerialDate.leapYearCount(1899), 0);
-    }
-
-    /**
-     * The number of leap years from 1900 up-to-and-including 1903 is 0.
-     */
-    public void testLeapYearCount1903() {
-        assertEquals(SerialDate.leapYearCount(1903), 0);
-    }
-
-    /**
-     * The number of leap years from 1900 up-to-and-including 1904 is 1.
-     */
-    public void testLeapYearCount1904() {
-        assertEquals(SerialDate.leapYearCount(1904), 1);
-    }
-
-    /**
-     * The number of leap years from 1900 up-to-and-including 1999 is 24.
-     */
-    public void testLeapYearCount1999() {
-        assertEquals(SerialDate.leapYearCount(1999), 24);
-    }
-
-    /**
-     * The number of leap years from 1900 up-to-and-including 2000 is 25.
-     */
-    public void testLeapYearCount2000() {
-        assertEquals(SerialDate.leapYearCount(2000), 25);
-    }
-
-    /**
      * Serialize an instance, restore it, and check for equality.
      */
     public void testSerialization() {
@@ -598,6 +549,7 @@ public class SerialDateTest extends TestCase {
     }
 
     public void testLeapYearCount() throws Exception {
+        assertEquals(0, leapYearCount(1899));
         assertEquals(0, leapYearCount(1900));
         assertEquals(0, leapYearCount(1901));
         assertEquals(0, leapYearCount(1902));
@@ -608,6 +560,7 @@ public class SerialDateTest extends TestCase {
         assertEquals(1, leapYearCount(1907));
         assertEquals(2, leapYearCount(1908));
         assertEquals(24, leapYearCount(1999));
+        assertEquals(25, leapYearCount(2000));
         assertEquals(25, leapYearCount(2001));
         assertEquals(49, leapYearCount(2101));
         assertEquals(73, leapYearCount(2201));
