@@ -71,10 +71,6 @@ import static org.jfree.date.SerialDate.*;
  * Some JUnit tests for the {@link SerialDate} class.
  */
 public class SerialDateTest extends TestCase {
-
-    /** Date representing November 9. */
-    private SerialDate nov9Y2001;
-
     /**
      * Creates a new test case.
      *
@@ -91,32 +87,6 @@ public class SerialDateTest extends TestCase {
      */
     public static Test suite() {
         return new TestSuite(SerialDateTest.class);
-    }
-
-    /**
-     * Problem set up.
-     */
-    protected void setUp() {
-        this.nov9Y2001 = SerialDate.createInstance(9, MonthConstants.NOVEMBER, 2001);
-    }
-
-    /**
-     * Monday nearest Friday 9 November 2001 should be 12 November.
-     */
-    public void testMondayNearestFriday9Nov2001() {
-        SerialDate mondayNearest = SerialDate.getNearestDayOfWeek(
-            SerialDate.MONDAY, this.nov9Y2001
-        );
-        assertEquals(12, mondayNearest.getDayOfMonth());
-    }
-
-    /**
-     * The Monday nearest to 22nd January 1970 falls on the 19th.
-     */
-    public void testMondayNearest22Jan1970() {
-        SerialDate jan22Y1970 = SerialDate.createInstance(22, MonthConstants.JANUARY, 1970);
-        SerialDate mondayNearest = SerialDate.getNearestDayOfWeek(SerialDate.MONDAY, jan22Y1970);
-        assertEquals(19, mondayNearest.getDayOfMonth());
     }
 
     /**
@@ -592,6 +562,9 @@ public class SerialDateTest extends TestCase {
     }
 
     public void testGetNearestDayOfWeek() throws Exception {
+        assertEquals(d(12, NOVEMBER, 2001), getNearestDayOfWeek(MONDAY, d(9, NOVEMBER, 2001)));
+        assertEquals(d(19, JANUARY, 1970), getNearestDayOfWeek(MONDAY, d(22, JANUARY, 1970)));
+
         assertEquals(d(16, APRIL, 2006), getNearestDayOfWeek(SUNDAY, d(16, APRIL, 2006)));
         assertEquals(d(16, APRIL, 2006), getNearestDayOfWeek(SUNDAY, d(17, APRIL, 2006)));
         assertEquals(d(16, APRIL, 2006), getNearestDayOfWeek(SUNDAY, d(18, APRIL, 2006)));
