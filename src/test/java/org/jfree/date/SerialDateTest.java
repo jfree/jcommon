@@ -111,17 +111,6 @@ public class SerialDateTest extends TestCase {
             System.out.println(e.toString());
         }
         assertEquals(d1, d2);
-
-    }
-
-    /**
-     * A test for bug report 1096282 (now fixed).
-     */
-    public void test1096282() {
-        SerialDate d = SerialDate.createInstance(29, 2, 2004);
-        d = SerialDate.addYears(1, d);
-        SerialDate expected = SerialDate.createInstance(28, 2, 2005);
-        assertTrue(d.isOn(expected));
     }
 
     public void testIsValidWeekdayCode() throws Exception {
@@ -520,6 +509,10 @@ public class SerialDateTest extends TestCase {
         assertEquals(d(28, FEBRUARY, 1905), addYears(1, d(29, FEBRUARY, 1904)));
         assertEquals(d(28, FEBRUARY, 1905), addYears(1, d(28, FEBRUARY, 1904)));
         assertEquals(d(28, FEBRUARY, 1904), addYears(1, d(28, FEBRUARY, 1903)));
+
+        // TODO Verify this isOn method, if it is really necessary here or not.
+        // A test for bug report 1096282 (now fixed).
+        assertTrue(addYears(1, d(29, FEBRUARY, 2004)).isOn(d(28, FEBRUARY, 2005)));
     }
 
     public void testGetPreviousDayOfWeek() throws Exception {
