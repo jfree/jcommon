@@ -93,7 +93,6 @@ public class SerialDateTest extends TestCase {
      * Serialize an instance, restore it, and check for equality.
      */
     public void testSerialization() {
-
         SerialDate d1 = SerialDate.createInstance(15, 4, 2000);
         SerialDate d2 = null;
 
@@ -217,17 +216,20 @@ public class SerialDateTest extends TestCase {
         try {
             monthCodeToQuarter(-1);
             fail("Invalid Month Code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
         try {
             monthCodeToQuarter(0);
             fail("Invalid Month Code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
         try {
             monthCodeToQuarter(13);
             fail("Invalid Month Code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
     }
 
@@ -264,17 +266,20 @@ public class SerialDateTest extends TestCase {
         try {
             monthCodeToString(-1);
             fail("Invalid month code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
         try {
             monthCodeToString(0);
             fail("Invalid month code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
         try {
             monthCodeToString(13);
             fail("Invalid month code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
     }
 
@@ -526,7 +531,8 @@ public class SerialDateTest extends TestCase {
         try {
             getPreviousDayOfWeek(-1, d(1, JANUARY, 2006));
             fail("Invalid day of week code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
     }
 
@@ -540,7 +546,8 @@ public class SerialDateTest extends TestCase {
         try {
             getFollowingDayOfWeek(-1, d(1, JANUARY, 2006));
             fail("Invalid day of week code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
     }
 
@@ -607,11 +614,12 @@ public class SerialDateTest extends TestCase {
         try {
             getNearestDayOfWeek(-1, d(1, JANUARY, 2006));
             fail("Invalid day of week code should throw exception");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
         }
     }
 
-    public void testEndOfCurrentMonth() {
+    public void testGetEndOfCurrentMonth() {
         SerialDate d = SerialDate.createInstance(2);
         assertEquals(d(31, JANUARY, 2006), d.getEndOfCurrentMonth(d(1, JANUARY, 2006)));
         assertEquals(d(28, FEBRUARY, 2006), d.getEndOfCurrentMonth(d(1, FEBRUARY, 2006)));
@@ -638,7 +646,8 @@ public class SerialDateTest extends TestCase {
         //TODO try {
         //weekInMonthToString(-1);
         //fail("Invalid week code should throw exception");
-        //} catch (IllegalArgumentException e) {
+        //}
+        //catch (IllegalArgumentException e) {
         //}
     }
 
@@ -650,11 +659,12 @@ public class SerialDateTest extends TestCase {
         //TODO try {
         //relativeToString(-1000);
         //fail("Invalid relative code should throw exception");
-        //} catch (IllegalArgumentException e) {
+        //}
+        //catch (IllegalArgumentException e) {
         //}
     }
 
-    public void testCreateInstanceFromDDMMYYY() {
+    public void testCreateInstanceFromDDMMYYYY() {
         SerialDate date = createInstance(1, JANUARY, 1900);
         assertEquals(1,date.getDayOfMonth());
         assertEquals(JANUARY,date.getMonth());
