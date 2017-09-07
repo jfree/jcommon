@@ -30,7 +30,7 @@
  * (C) Copyright 2001-2014, by Object Refinery Limited.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
- * Contributor(s):   -;
+ * Contributor(s):   Robert C. Martin (through the book: Clean Code);
  *
  * $Id: SerialDateTest.java,v 1.7 2007/11/02 17:50:35 taqua Exp $
  *
@@ -45,10 +45,18 @@
  */
 
 /*
- * This class is being updated with the contents of the Listing B-4 BobsSerialDateTest from the book Clean Code.
+ * This class is being updated with the contents of the section: "First, Make It Work" page 268 of the book Clean Code.
+ *
+ * This class is now updated with the contents of the Listing B-4 BobsSerialDateTest from the book Clean Code.
  * ISBN: 978-0-13-235088-4
  *
- * Hopefully the commits are small enough sou you can track each test and each difference from the book.
+ * There are minor differences though, because this is a production environment. I wanted to keep the conventions of the
+ * package as much as possible. There are test cases which I kept, there were some wording issues I corrected and also
+ * there were stuff I just simply preferred in my way.
+ *
+ * The class is of course not called BobsSerialDateTest. It should match nicely with the code you can find in the book.
+ * Additionally, I split the additions into many commits so it can be read well too. I hope.
+ *
  */
 
 package org.jfree.date;

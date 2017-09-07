@@ -53,7 +53,11 @@
  * 29-May-2003 : Fixed bug in addMonths method (DG);
  * 04-Sep-2003 : Implemented Comparable.  Updated the isInRange javadocs (DG);
  * 05-Jan-2005 : Fixed bug in addYears() method (1096282) (DG);
- * 
+ *
+ */
+
+/*
+ * This class is being updated with the contents of the section: "First, Make It Work" page 268 of the book Clean Code.
  */
 
 package org.jfree.date;
