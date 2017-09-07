@@ -44,6 +44,13 @@
  *
  */
 
+/*
+ * This class is being updated with the contents of the Listing B-4 BobsSerialDateTest from the book Clean Code.
+ * ISBN: 978-0-13-235088-4
+ *
+ * Hopefully the commits are small enough sou you can track each test and each difference from the book.
+ */
+
 package org.jfree.date;
 
 import java.io.ByteArrayInputStream;
