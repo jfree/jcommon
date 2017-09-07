@@ -101,16 +101,6 @@ public class SerialDateTest extends TestCase {
     }
 
     /**
-     * Monday preceding Friday 9 November 2001 should be 5 November.
-     */
-    public void testMondayPrecedingFriday9Nov2001() {
-        SerialDate mondayBefore = SerialDate.getPreviousDayOfWeek(
-            SerialDate.MONDAY, this.nov9Y2001
-        );
-        assertEquals(5, mondayBefore.getDayOfMonth());
-    }
-
-    /**
      * Monday following Friday 9 November 2001 should be 12 November.
      */
     public void testMondayFollowingFriday9Nov2001() {
@@ -583,6 +573,8 @@ public class SerialDateTest extends TestCase {
     }
 
     public void testGetPreviousDayOfWeek() throws Exception {
+        assertEquals(d(5, NOVEMBER, 2001), getPreviousDayOfWeek(MONDAY, d(9, NOVEMBER, 2001)));
+
         assertEquals(d(24, FEBRUARY, 2006), getPreviousDayOfWeek(FRIDAY, d(1, MARCH, 2006)));
         assertEquals(d(22, FEBRUARY, 2006), getPreviousDayOfWeek(WEDNESDAY, d(1, MARCH, 2006)));
         assertEquals(d(29, FEBRUARY, 2004), getPreviousDayOfWeek(SUNDAY, d(3, MARCH, 2004)));
