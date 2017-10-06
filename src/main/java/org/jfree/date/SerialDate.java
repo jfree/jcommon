@@ -372,7 +372,7 @@ public abstract class SerialDate implements Comparable,
             case NOVEMBER:
             case DECEMBER: return 4;
             default: throw new IllegalArgumentException(
-                "SerialDate.monthCodeToQuarter: invalid month code.");
+                "Invalid month code.");
         }
 
     }
@@ -411,7 +411,7 @@ public abstract class SerialDate implements Comparable,
         // check arguments...
         if (!isValidMonthCode(month)) {
             throw new IllegalArgumentException(
-                "SerialDate.monthCodeToString: month outside valid range.");
+                "Invalid month code.");
         }
 
         final String[] months;
@@ -644,7 +644,7 @@ public abstract class SerialDate implements Comparable,
         // check arguments...
         if (!SerialDate.isValidWeekdayCode(targetWeekday)) {
             throw new IllegalArgumentException(
-                "Invalid day-of-the-week code."
+                "Invalid weekday code."
             );
         }
 
@@ -678,7 +678,7 @@ public abstract class SerialDate implements Comparable,
         // check arguments...
         if (!SerialDate.isValidWeekdayCode(targetWeekday)) {
             throw new IllegalArgumentException(
-                "Invalid day-of-the-week code."
+                "Invalid weekday code."
             );
         }
 
@@ -711,7 +711,7 @@ public abstract class SerialDate implements Comparable,
         // check arguments...
         if (!SerialDate.isValidWeekdayCode(targetDOW)) {
             throw new IllegalArgumentException(
-                "Invalid day-of-the-week code."
+                "Invalid weekday code."
             );
         }
 
