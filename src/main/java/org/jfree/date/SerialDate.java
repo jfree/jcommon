@@ -30,7 +30,7 @@
  * (C) Copyright 2001-2006, by Object Refinery Limited.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
- * Contributor(s):   -;
+ * Contributor(s):   Robert C. Martin (through the book: Clean Code);
  *
  * $Id: SerialDate.java,v 1.9 2011/10/17 20:08:22 mungady Exp $
  *
@@ -57,7 +57,9 @@
  */
 
 /*
- * This class is being updated with the contents of the section: "First, Make It Work" page 268 of the book Clean Code.
+ * This class is now updated with the contents of the section: "First, Make It Work" page 268 of the book Clean Code.
+ *
+ * I preferred to fix the old logic of getNearestDayOfWeek
  */
 
 package org.jfree.date;

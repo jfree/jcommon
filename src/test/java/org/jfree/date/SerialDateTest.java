@@ -45,13 +45,13 @@
  */
 
 /*
- * This class is being updated with the contents of the section: "First, Make It Work" page 268 of the book Clean Code.
+ * This class is now updated with the contents of the section: "First, Make It Work" page 268 of the book Clean Code.
  *
  * This class is now updated with the contents of the Listing B-4 BobsSerialDateTest from the book Clean Code.
  * ISBN: 978-0-13-235088-4
  *
- * There are minor differences though, because this is a production environment. I wanted to keep the conventions of the
- * package as much as possible. There are test cases which I kept, there were some wording issues I corrected and also
+ * There are minor differences though because this is a production environment. I wanted to keep the conventions of the
+ * package as much as possible. There were test cases which I kept, there were some wording issues I corrected and also
  * there were stuff I just simply preferred in my way.
  *
  * The class is of course not called BobsSerialDateTest. It should match nicely with the code you can find in the book.
@@ -275,12 +275,14 @@ public class SerialDateTest extends TestCase {
         }
         catch (IllegalArgumentException e) {
         }
+
         try {
             monthCodeToString(0);
             fail("Invalid month code should throw exception");
         }
         catch (IllegalArgumentException e) {
         }
+
         try {
             monthCodeToString(13);
             fail("Invalid month code should throw exception");
@@ -352,70 +354,70 @@ public class SerialDateTest extends TestCase {
         assertEquals(NOVEMBER, stringToMonthCode("Nov"));
         assertEquals(DECEMBER, stringToMonthCode("Dec"));
 
-        assertEquals(1, stringToMonthCode("jan"));
-        assertEquals(2, stringToMonthCode("feb"));
-        assertEquals(3, stringToMonthCode("mar"));
-        assertEquals(4, stringToMonthCode("apr"));
-        assertEquals(5, stringToMonthCode("may"));
-        assertEquals(6, stringToMonthCode("jun"));
-        assertEquals(7, stringToMonthCode("jul"));
-        assertEquals(8, stringToMonthCode("aug"));
-        assertEquals(9, stringToMonthCode("sep"));
-        assertEquals(10, stringToMonthCode("oct"));
-        assertEquals(11, stringToMonthCode("nov"));
-        assertEquals(12, stringToMonthCode("dec"));
+        assertEquals(JANUARY, stringToMonthCode("jan"));
+        assertEquals(FEBRUARY, stringToMonthCode("feb"));
+        assertEquals(MARCH, stringToMonthCode("mar"));
+        assertEquals(APRIL, stringToMonthCode("apr"));
+        assertEquals(MAY, stringToMonthCode("may"));
+        assertEquals(JUNE, stringToMonthCode("jun"));
+        assertEquals(JULY, stringToMonthCode("jul"));
+        assertEquals(AUGUST, stringToMonthCode("aug"));
+        assertEquals(SEPTEMBER, stringToMonthCode("sep"));
+        assertEquals(OCTOBER, stringToMonthCode("oct"));
+        assertEquals(NOVEMBER, stringToMonthCode("nov"));
+        assertEquals(DECEMBER, stringToMonthCode("dec"));
 
-        assertEquals(1, stringToMonthCode("JAN"));
-        assertEquals(2, stringToMonthCode("FEB"));
-        assertEquals(3, stringToMonthCode("MAR"));
-        assertEquals(4, stringToMonthCode("APR"));
-        assertEquals(5, stringToMonthCode("MAY"));
-        assertEquals(6, stringToMonthCode("JUN"));
-        assertEquals(7, stringToMonthCode("JUL"));
-        assertEquals(8, stringToMonthCode("AUG"));
-        assertEquals(9, stringToMonthCode("SEP"));
-        assertEquals(10, stringToMonthCode("OCT"));
-        assertEquals(11, stringToMonthCode("NOV"));
-        assertEquals(12, stringToMonthCode("DEC"));
+        assertEquals(JANUARY, stringToMonthCode("JAN"));
+        assertEquals(FEBRUARY, stringToMonthCode("FEB"));
+        assertEquals(MARCH, stringToMonthCode("MAR"));
+        assertEquals(APRIL, stringToMonthCode("APR"));
+        assertEquals(MAY, stringToMonthCode("MAY"));
+        assertEquals(JUNE, stringToMonthCode("JUN"));
+        assertEquals(JULY, stringToMonthCode("JUL"));
+        assertEquals(AUGUST, stringToMonthCode("AUG"));
+        assertEquals(SEPTEMBER, stringToMonthCode("SEP"));
+        assertEquals(OCTOBER, stringToMonthCode("OCT"));
+        assertEquals(NOVEMBER, stringToMonthCode("NOV"));
+        assertEquals(DECEMBER, stringToMonthCode("DEC"));
 
-        assertEquals(1, stringToMonthCode("january"));
-        assertEquals(2, stringToMonthCode("february"));
-        assertEquals(3, stringToMonthCode("march"));
-        assertEquals(4, stringToMonthCode("april"));
-        assertEquals(5, stringToMonthCode("may"));
-        assertEquals(6, stringToMonthCode("june"));
-        assertEquals(7, stringToMonthCode("july"));
-        assertEquals(8, stringToMonthCode("august"));
-        assertEquals(9, stringToMonthCode("september"));
-        assertEquals(10, stringToMonthCode("october"));
-        assertEquals(11, stringToMonthCode("november"));
-        assertEquals(12, stringToMonthCode("december"));
+        assertEquals(JANUARY, stringToMonthCode("january"));
+        assertEquals(FEBRUARY, stringToMonthCode("february"));
+        assertEquals(MARCH, stringToMonthCode("march"));
+        assertEquals(APRIL, stringToMonthCode("april"));
+        assertEquals(MAY, stringToMonthCode("may"));
+        assertEquals(JUNE, stringToMonthCode("june"));
+        assertEquals(JULY, stringToMonthCode("july"));
+        assertEquals(AUGUST, stringToMonthCode("august"));
+        assertEquals(SEPTEMBER, stringToMonthCode("september"));
+        assertEquals(OCTOBER, stringToMonthCode("october"));
+        assertEquals(NOVEMBER, stringToMonthCode("november"));
+        assertEquals(DECEMBER, stringToMonthCode("december"));
 
-        assertEquals(1, stringToMonthCode(" january "));
-        assertEquals(2, stringToMonthCode(" february "));
-        assertEquals(3, stringToMonthCode(" march "));
-        assertEquals(4, stringToMonthCode(" april "));
-        assertEquals(5, stringToMonthCode(" may "));
-        assertEquals(6, stringToMonthCode(" june "));
-        assertEquals(7, stringToMonthCode(" july "));
-        assertEquals(8, stringToMonthCode(" august "));
-        assertEquals(9, stringToMonthCode(" september "));
-        assertEquals(10, stringToMonthCode(" october "));
-        assertEquals(11, stringToMonthCode(" november "));
-        assertEquals(12, stringToMonthCode(" december "));
+        assertEquals(JANUARY, stringToMonthCode(" january "));
+        assertEquals(FEBRUARY, stringToMonthCode(" february "));
+        assertEquals(MARCH, stringToMonthCode(" march "));
+        assertEquals(APRIL, stringToMonthCode(" april "));
+        assertEquals(MAY, stringToMonthCode(" may "));
+        assertEquals(JUNE, stringToMonthCode(" june "));
+        assertEquals(JULY, stringToMonthCode(" july "));
+        assertEquals(AUGUST, stringToMonthCode(" august "));
+        assertEquals(SEPTEMBER, stringToMonthCode(" september "));
+        assertEquals(OCTOBER, stringToMonthCode(" october "));
+        assertEquals(NOVEMBER, stringToMonthCode(" november "));
+        assertEquals(DECEMBER, stringToMonthCode(" december "));
 
-        assertEquals(1, stringToMonthCode("JANUARY"));
-        assertEquals(2, stringToMonthCode("FEBRUARY"));
-        assertEquals(3, stringToMonthCode("MAR"));
-        assertEquals(4, stringToMonthCode("APRIL"));
-        assertEquals(5, stringToMonthCode("MAY"));
-        assertEquals(6, stringToMonthCode("JUNE"));
-        assertEquals(7, stringToMonthCode("JULY"));
-        assertEquals(8, stringToMonthCode("AUGUST"));
-        assertEquals(9, stringToMonthCode("SEPTEMBER"));
-        assertEquals(10, stringToMonthCode("OCTOBER"));
-        assertEquals(11, stringToMonthCode("NOVEMBER"));
-        assertEquals(12, stringToMonthCode("DECEMBER"));
+        assertEquals(JANUARY, stringToMonthCode("JANUARY"));
+        assertEquals(FEBRUARY, stringToMonthCode("FEBRUARY"));
+        assertEquals(MARCH, stringToMonthCode("MAR"));
+        assertEquals(APRIL, stringToMonthCode("APRIL"));
+        assertEquals(MAY, stringToMonthCode("MAY"));
+        assertEquals(JUNE, stringToMonthCode("JUNE"));
+        assertEquals(JULY, stringToMonthCode("JULY"));
+        assertEquals(AUGUST, stringToMonthCode("AUGUST"));
+        assertEquals(SEPTEMBER, stringToMonthCode("SEPTEMBER"));
+        assertEquals(OCTOBER, stringToMonthCode("OCTOBER"));
+        assertEquals(NOVEMBER, stringToMonthCode("NOVEMBER"));
+        assertEquals(DECEMBER, stringToMonthCode("DECEMBER"));
     }
 
     public void testIsValidWeekInMonthCode() {
@@ -545,7 +547,7 @@ public class SerialDateTest extends TestCase {
     public void testGetFollowingDayOfWeek() {
         assertEquals(d(12, NOVEMBER, 2001), getFollowingDayOfWeek(MONDAY, d(9, NOVEMBER, 2001)));
 
-        assertEquals(d(1, JANUARY, 2005),getFollowingDayOfWeek(SATURDAY, d(25, DECEMBER, 2004)));
+        assertEquals(d(1, JANUARY, 2005), getFollowingDayOfWeek(SATURDAY, d(25, DECEMBER, 2004)));
         assertEquals(d(1, JANUARY, 2005), getFollowingDayOfWeek(SATURDAY, d(26, DECEMBER, 2004)));
         assertEquals(d(3, MARCH, 2004), getFollowingDayOfWeek(WEDNESDAY, d(28, FEBRUARY, 2004)));
 
@@ -643,11 +645,11 @@ public class SerialDateTest extends TestCase {
     }
 
     public void testWeekInMonthToString() {
-        assertEquals("First",weekInMonthToString(FIRST_WEEK_IN_MONTH));
-        assertEquals("Second",weekInMonthToString(SECOND_WEEK_IN_MONTH));
-        assertEquals("Third",weekInMonthToString(THIRD_WEEK_IN_MONTH));
-        assertEquals("Fourth",weekInMonthToString(FOURTH_WEEK_IN_MONTH));
-        assertEquals("Last",weekInMonthToString(LAST_WEEK_IN_MONTH));
+        assertEquals("First", weekInMonthToString(FIRST_WEEK_IN_MONTH));
+        assertEquals("Second", weekInMonthToString(SECOND_WEEK_IN_MONTH));
+        assertEquals("Third", weekInMonthToString(THIRD_WEEK_IN_MONTH));
+        assertEquals("Fourth", weekInMonthToString(FOURTH_WEEK_IN_MONTH));
+        assertEquals("Last", weekInMonthToString(LAST_WEEK_IN_MONTH));
 
         try {
             weekInMonthToString(-1);
@@ -658,9 +660,9 @@ public class SerialDateTest extends TestCase {
     }
 
     public void testRelativeToString() {
-        assertEquals("Preceding",relativeToString(PRECEDING));
-        assertEquals("Nearest",relativeToString(NEAREST));
-        assertEquals("Following",relativeToString(FOLLOWING));
+        assertEquals("Preceding", relativeToString(PRECEDING));
+        assertEquals("Nearest", relativeToString(NEAREST));
+        assertEquals("Following", relativeToString(FOLLOWING));
 
         try {
             relativeToString(-1000);
@@ -672,10 +674,10 @@ public class SerialDateTest extends TestCase {
 
     public void testCreateInstanceFromDDMMYYYY() {
         SerialDate date = createInstance(1, JANUARY, 1900);
-        assertEquals(1,date.getDayOfMonth());
-        assertEquals(JANUARY,date.getMonth());
-        assertEquals(1900,date.getYYYY());
-        assertEquals(2,date.toSerial());
+        assertEquals(1, date.getDayOfMonth());
+        assertEquals(JANUARY, date.getMonth());
+        assertEquals(1900, date.getYYYY());
+        assertEquals(2, date.toSerial());
     }
 
     public void testCreateInstanceFromSerial() {
@@ -685,8 +687,8 @@ public class SerialDateTest extends TestCase {
 
     public void testCreateInstanceFromJavaDate() {
         assertEquals(d(1, JANUARY, 1900),
-                createInstance(new GregorianCalendar(1900,0,1).getTime()));
+                createInstance(new GregorianCalendar(1900, 0, 1).getTime()));
         assertEquals(d(1, JANUARY, 2006),
-                createInstance(new GregorianCalendar(2006,0,1).getTime()));
+                createInstance(new GregorianCalendar(2006, 0, 1).getTime()));
     }
 }
