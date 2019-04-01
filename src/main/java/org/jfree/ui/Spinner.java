@@ -61,16 +61,16 @@ public class Spinner extends JPanel implements MouseListener {
     private int value;
 
     /** The text field displaying the value. */
-    private JTextField textField;
+    private JTextField valueField;
 
     /** The arrow button panel. */
-    private JPanel buttonPanel;
+    private JPanel arrowPanel;
 
     /** The up button. */
-    private ArrowPanel upButton;
+    private ArrowButton upButton;
 
     /** The down button. */
-    private ArrowPanel downButton;
+    private ArrowButton downButton;
 
     /**
      * Creates a new spinner.
@@ -79,18 +79,36 @@ public class Spinner extends JPanel implements MouseListener {
      */
     public Spinner(final int value) {
         super(new BorderLayout());
+
         this.value = value;
-        this.textField = new JTextField(Integer.toString(this.value));
-        this.textField.setHorizontalAlignment(SwingConstants.RIGHT);
-        add(this.textField);
-        this.buttonPanel = new JPanel(new GridLayout(2, 1, 0, 1));
-        this.upButton = new ArrowPanel(ArrowPanel.UP);
-        this.upButton.addMouseListener(this);
-        this.downButton = new ArrowPanel(ArrowPanel.DOWN);
-        this.downButton.addMouseListener(this);
-        this.buttonPanel.add(this.upButton);
-        this.buttonPanel.add(this.downButton);
-        add(this.buttonPanel, BorderLayout.EAST);
+
+        createAndRegisterValueField();
+        createAndRegisterButtonPanel();
+    }
+
+    private void createAndRegisterValueField(){
+        this.valueField = new JTextField(Integer.toString(this.value));
+        this.valueField.setHorizontalAlignment(SwingConstants.RIGHT);
+        add(this.valueField);
+    }
+
+    private void createAndRegisterButtonPanel(){
+        this.arrowPanel = new JPanel(new GridLayout(2, 1, 0, 1));
+        createAndRegisterButtons();
+        add(this.arrowPanel, BorderLayout.EAST);
+    }
+
+    private void createAndRegisterButtons(){
+        this.upButton = createAndRegisterButton(ArrowDirection.UP);
+        this.arrowPanel.add(this.upButton);
+        this.downButton = createAndRegisterButton(ArrowDirection.DOWN);
+        this.arrowPanel.add(this.downButton);
+    }
+
+    private ArrowButton createAndRegisterButton(ArrowDirection direction) {
+        ArrowButton button = new ArrowButton(direction);
+        button.addMouseListener(this);
+        return button;
     }
 
     /**
@@ -108,16 +126,24 @@ public class Spinner extends JPanel implements MouseListener {
      * @param e  the mouse event.
      */
     public void mouseClicked(final MouseEvent e) {
-        if (e.getSource() == this.upButton) {
-            this.value++;
-            this.textField.setText(Integer.toString(this.value));
-            firePropertyChange("value", this.value - 1, this.value);
+        int delta = 0;
+
+        if (isSource(this.upButton, e)) delta = 1;
+        else if (isSource(this.downButton, e)) delta = -1;
+
+        if(delta != 0) {
+            valueChange(delta);
+            firePropertyChange("value", this.value - delta, this.value);
         }
-        else if (e.getSource() == this.downButton) {
-            this.value--;
-            this.textField.setText(Integer.toString(this.value));
-            firePropertyChange("value", this.value + 1, this.value);
-        }
+    }
+
+    private Boolean isSource(Object potentialSource, MouseEvent e){
+        return e.getSource() == potentialSource;
+    }
+
+    private void valueChange(int delta){
+        this.value += delta;
+        this.valueField.setText(Integer.toString(this.value));
     }
 
     /**
