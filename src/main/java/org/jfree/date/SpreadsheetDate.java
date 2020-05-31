@@ -3,25 +3,25 @@
  * ========================================================================
  *
  * (C) Copyright 2000-2006, by Object Refinery Limited and Contributors.
- * 
+ *
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
- * This library is free software; you can redistribute it and/or modify it 
- * under the terms of the GNU Lesser General Public License as published by 
- * the Free Software Foundation; either version 2.1 of the License, or 
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
  * (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but 
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, 
- * USA.  
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  *
- * [Java is a trademark or registered trademark of Sun Microsystems, Inc. 
+ * [Java is a trademark or registered trademark of Sun Microsystems, Inc.
  * in the United States and other countries.]
  *
  * --------------------
@@ -39,9 +39,9 @@
  * 11-Oct-2001 : Version 1 (DG);
  * 05-Nov-2001 : Added getDescription() and setDescription() methods (DG);
  * 12-Nov-2001 : Changed name from ExcelDate.java to SpreadsheetDate.java (DG);
- *               Fixed a bug in calculating day, month and year from serial 
+ *               Fixed a bug in calculating day, month and year from serial
  *               number (DG);
- * 24-Jan-2002 : Fixed a bug in calculating the serial number from the day, 
+ * 24-Jan-2002 : Fixed a bug in calculating the serial number from the day,
  *               month and year.  Thanks to Trevor Hills for the report (DG);
  * 29-May-2002 : Added equals(Object) method (SourceForge ID 558850) (DG);
  * 03-Oct-2002 : Fixed errors reported by Checkstyle (DG);
@@ -57,18 +57,22 @@ package org.jfree.date;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
+import static org.jfree.date.Day.SATURDAY;
+import static org.jfree.date.Month.FEBRUARY;
 
 /**
  * Represents a date using an integer, in a similar fashion to the
  * implementation in Microsoft Excel.  The range of dates supported is
  * 1-Jan-1900 to 31-Dec-9999.
- * <P>
+ * <p>
  * Be aware that there is a deliberate bug in Excel that recognises the year
  * 1900 as a leap year when in fact it is not a leap year. You can find more
  * information on the Microsoft website in article Q181370:
- * <P>
+ * <p>
  * http://support.microsoft.com/support/kb/articles/Q181/3/70.asp
- * <P>
+ * <p>
  * Excel uses the convention that 1-Jan-1900 = 1.  This class uses the
  * convention 1-Jan-1900 = 2.
  * The result is that the day number in this class will be different to the
@@ -78,384 +82,141 @@ import java.util.Date;
  *
  * @author David Gilbert
  */
-public class SpreadsheetDate extends SerialDate {
+public class SpreadsheetDate extends DayDate {
+    public static final int EARLIEST_DATE_ORDINAL = 2;      // 1/1/1900
+    public static final int LATEST_DATE_ORDINAL = 2958465;  // 12/31/9999
+    public static final int MINIMUM_YEAR_SUPPORTED = 1900;
+    public static final int MAXIMUM_YEAR_SUPPORTED = 9999;
+    public static final int[] AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH =
+            {0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
+    public static final int[]
+            LEAP_YEAR_AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH =
+            {0, 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366};
 
-    /** For serialization. */
-    private static final long serialVersionUID = -2039586705374454461L;
-    
-    /** 
-     * The day number (1-Jan-1900 = 2, 2-Jan-1900 = 3, ..., 31-Dec-9999 = 
-     * 2958465). 
-     */
-    private final int serial;
+    private int ordinalDay;
+    private int day;
+    private Month month;
+    private int year;
 
-    /** The day of the month (1 to 28, 29, 30 or 31 depending on the month). */
-    private final int day;
-
-    /** The month of the year (1 to 12). */
-    private final int month;
-
-    /** The year (1900 to 9999). */
-    private final int year;
-
-    /**
-     * Creates a new date instance.
-     *
-     * @param day  the day (in the range 1 to 28/29/30/31).
-     * @param month  the month (in the range 1 to 12).
-     * @param year  the year (in the range 1900 to 9999).
-     */
-    public SpreadsheetDate(final int day, final int month, final int year) {
-
-        if ((year >= 1900) && (year <= 9999)) {
-            this.year = year;
-        }
-        else {
+    public SpreadsheetDate(int day, Month month, int year) {
+        if (year < MINIMUM_YEAR_SUPPORTED || year > MAXIMUM_YEAR_SUPPORTED)
             throw new IllegalArgumentException(
-                "The 'year' argument must be in range 1900 to 9999."
-            );
-        }
-
-        if ((month >= MonthConstants.JANUARY) 
-                && (month <= MonthConstants.DECEMBER)) {
-            this.month = month;
-        }
-        else {
-            throw new IllegalArgumentException(
-                "The 'month' argument must be in the range 1 to 12."
-            );
-        }
-
-        if ((day >= 1) && (day <= SerialDate.lastDayOfMonth(month, year))) {
-            this.day = day;
-        }
-        else {
+                    "The 'year' argument must be in range " +
+                            MINIMUM_YEAR_SUPPORTED + " to " + MAXIMUM_YEAR_SUPPORTED + ".");
+        if (day < 1 || day > DateUtil.lastDayOfMonth(month, year))
             throw new IllegalArgumentException("Invalid 'day' argument.");
-        }
 
-        // the serial number needs to be synchronised with the day-month-year...
-        this.serial = calcSerial(day, month, year);
-
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        ordinalDay = calcOrdinal(day, month, year);
     }
 
-    /**
-     * Standard constructor - creates a new date object representing the
-     * specified day number (which should be in the range 2 to 2958465.
-     *
-     * @param serial  the serial number for the day (range: 2 to 2958465).
-     */
-    public SpreadsheetDate(final int serial) {
+    public SpreadsheetDate(int day, int month, int year) {
+        this(day, Month.fromInt(month), year);
+    }
 
-        if ((serial >= SERIAL_LOWER_BOUND) && (serial <= SERIAL_UPPER_BOUND)) {
-            this.serial = serial;
-        }
-        else {
+    public SpreadsheetDate(int serial) {
+        if (serial < EARLIEST_DATE_ORDINAL || serial > LATEST_DATE_ORDINAL)
             throw new IllegalArgumentException(
-                "SpreadsheetDate: Serial must be in range 2 to 2958465.");
-        }
+                    "SpreadsheetDate: Serial must be in range 2 to 2958465.");
 
-        // the day-month-year needs to be synchronised with the serial number...
-      // get the year from the serial date
-      final int days = this.serial - SERIAL_LOWER_BOUND;
-      // overestimated because we ignored leap days
-      final int overestimatedYYYY = 1900 + (days / 365);
-      final int leaps = SerialDate.leapYearCount(overestimatedYYYY);
-      final int nonleapdays = days - leaps;
-      // underestimated because we overestimated years
-      int underestimatedYYYY = 1900 + (nonleapdays / 365);
-
-      if (underestimatedYYYY == overestimatedYYYY) {
-          this.year = underestimatedYYYY;
-      }
-      else {
-          int ss1 = calcSerial(1, 1, underestimatedYYYY);
-          while (ss1 <= this.serial) {
-              underestimatedYYYY = underestimatedYYYY + 1;
-              ss1 = calcSerial(1, 1, underestimatedYYYY);
-          }
-          this.year = underestimatedYYYY - 1;
-      }
-
-      final int ss2 = calcSerial(1, 1, this.year);
-
-      int[] daysToEndOfPrecedingMonth 
-          = AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH;
-
-      if (isLeapYear(this.year)) {
-          daysToEndOfPrecedingMonth 
-              = LEAP_YEAR_AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH;
-      }
-
-      // get the month from the serial date
-      int mm = 1;
-      int sss = ss2 + daysToEndOfPrecedingMonth[mm] - 1;
-      while (sss < this.serial) {
-          mm = mm + 1;
-          sss = ss2 + daysToEndOfPrecedingMonth[mm] - 1;
-      }
-      this.month = mm - 1;
-
-      // what's left is d(+1);
-      this.day = this.serial - ss2 
-                 - daysToEndOfPrecedingMonth[this.month] + 1;
-
+        ordinalDay = serial;
+        calcDayMonthYear();
     }
 
-    /**
-     * Returns the serial number for the date, where 1 January 1900 = 2
-     * (this corresponds, almost, to the numbering system used in Microsoft
-     * Excel for Windows and Lotus 1-2-3).
-     *
-     * @return The serial number of this date.
-     */
-    public int toSerial() {
-        return this.serial;
+    public int getOrdinalDay() {
+        return this.ordinalDay;
     }
 
-    /**
-     * Returns a <code>java.util.Date</code> equivalent to this date.
-     *
-     * @return The date.
-     */
-    public Date toDate() {
-        final Calendar calendar = Calendar.getInstance();
-        calendar.set(getYYYY(), getMonth() - 1, getDayOfMonth(), 0, 0, 0);
-        return calendar.getTime();
-    }
-
-    /**
-     * Returns the year (assume a valid range of 1900 to 9999).
-     *
-     * @return The year.
-     */
-    public int getYYYY() {
+    public int getYear() {
         return this.year;
     }
 
-    /**
-     * Returns the month (January = 1, February = 2, March = 3).
-     *
-     * @return The month of the year.
-     */
-    public int getMonth() {
+    public Month getMonth() {
         return this.month;
     }
 
-    /**
-     * Returns the day of the month.
-     *
-     * @return The day of the month.
-     */
     public int getDayOfMonth() {
         return this.day;
     }
 
-    /**
-     * Returns a code representing the day of the week.
-     * <P>
-     * The codes are defined in the {@link SerialDate} class as: 
-     * <code>SUNDAY</code>, <code>MONDAY</code>, <code>TUESDAY</code>, 
-     * <code>WEDNESDAY</code>, <code>THURSDAY</code>, <code>FRIDAY</code>, and 
-     * <code>SATURDAY</code>.
-     *
-     * @return A code representing the day of the week.
-     */
-    public int getDayOfWeek() {
-        return (this.serial + 6) % 7 + 1;
+    @Override
+    public Day getDayOfWeekForOrdinalZero() {
+        return SATURDAY;
     }
 
-    /**
-     * Tests the equality of this date with an arbitrary object.
-     * <P>
-     * This method will return true ONLY if the object is an instance of the
-     * {@link SerialDate} base class, and it represents the same day as this
-     * {@link SpreadsheetDate}.
-     *
-     * @param object  the object to compare (<code>null</code> permitted).
-     *
-     * @return A boolean.
-     */
-    public boolean equals(final Object object) {
-
-        if (object instanceof SerialDate) {
-            final SerialDate s = (SerialDate) object;
-            return (s.toSerial() == this.toSerial());
-        }
-        else {
+    public boolean equals(Object object) {
+        if (!(object instanceof DayDate))
             return false;
-        }
 
+        DayDate date = (DayDate) object;
+        return date.getOrdinalDay() == getOrdinalDay();
     }
 
-    /**
-     * Returns a hash code for this object instance.
-     * 
-     * @return A hash code.
-     */
     public int hashCode() {
-        return toSerial();
+        return getOrdinalDay();
     }
 
-    /**
-     * Returns the difference (in days) between this date and the specified 
-     * 'other' date.
-     *
-     * @param other  the date being compared to.
-     *
-     * @return The difference (in days) between this date and the specified 
-     *         'other' date.
-     */
-    public int compare(final SerialDate other) {
-        return this.serial - other.toSerial();
+    public int compareTo(Object other) {
+        return daysSince((DayDate) other);
     }
 
-    /**
-     * Implements the method required by the Comparable interface.
-     * 
-     * @param other  the other object (usually another SerialDate).
-     * 
-     * @return A negative integer, zero, or a positive integer as this object 
-     *         is less than, equal to, or greater than the specified object.
-     */
-    public int compareTo(final Object other) {
-        return compare((SerialDate) other);    
-    }
-    
-    /**
-     * Returns true if this SerialDate represents the same date as the
-     * specified SerialDate.
-     *
-     * @param other  the date being compared to.
-     *
-     * @return <code>true</code> if this SerialDate represents the same date as
-     *         the specified SerialDate.
-     */
-    public boolean isOn(final SerialDate other) {
-        return (this.serial == other.toSerial());
+    private int calcOrdinal(int day, Month month, int year) {
+        int leapDaysForYear = DateUtil.leapYearCount(year - 1);
+        int daysUpToYear = (year - MINIMUM_YEAR_SUPPORTED) * 365 + leapDaysForYear;
+        int daysUpToMonth = AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH[month.toInt()];
+        if (DateUtil.isLeapYear(year) && month.toInt() > FEBRUARY.toInt())
+            daysUpToMonth++;
+        int daysInMonth = day - 1;
+        return daysUpToYear + daysUpToMonth + daysInMonth + EARLIEST_DATE_ORDINAL;
     }
 
-    /**
-     * Returns true if this SerialDate represents an earlier date compared to
-     * the specified SerialDate.
-     *
-     * @param other  the date being compared to.
-     *
-     * @return <code>true</code> if this SerialDate represents an earlier date
-     *         compared to the specified SerialDate.
-     */
-    public boolean isBefore(final SerialDate other) {
-        return (this.serial < other.toSerial());
+    private void calcDayMonthYear() {
+        int days = ordinalDay - EARLIEST_DATE_ORDINAL;
+        int overestimatedYear = MINIMUM_YEAR_SUPPORTED + days / 365;
+        int nonleapdays = days - DateUtil.leapYearCount(overestimatedYear);
+        int underestimatedYear = MINIMUM_YEAR_SUPPORTED + nonleapdays / 365;
+
+        year = huntForYearContaining(ordinalDay, underestimatedYear);
+        int firstOrdinalOfYear = firstOrdinalOfYear(year);
+        month = huntForMonthContaining(ordinalDay, firstOrdinalOfYear);
+        day = ordinalDay - firstOrdinalOfYear - daysBeforeThisMonth(month.toInt());
     }
 
-    /**
-     * Returns true if this SerialDate represents the same date as the
-     * specified SerialDate.
-     *
-     * @param other  the date being compared to.
-     *
-     * @return <code>true</code> if this SerialDate represents the same date
-     *         as the specified SerialDate.
-     */
-    public boolean isOnOrBefore(final SerialDate other) {
-        return (this.serial <= other.toSerial());
+    private Month huntForMonthContaining(int anOrdinal, int firstOrdinalOfYear) {
+        int daysIntoThisYear = anOrdinal - firstOrdinalOfYear;
+        int aMonth = 1;
+        while (daysBeforeThisMonth(aMonth) < daysIntoThisYear)
+            aMonth++;
+
+        return Month.fromInt(aMonth - 1);
     }
 
-    /**
-     * Returns true if this SerialDate represents the same date as the
-     * specified SerialDate.
-     *
-     * @param other  the date being compared to.
-     *
-     * @return <code>true</code> if this SerialDate represents the same date
-     *         as the specified SerialDate.
-     */
-    public boolean isAfter(final SerialDate other) {
-        return (this.serial > other.toSerial());
+    private int daysBeforeThisMonth(int aMonth) {
+        if (DateUtil.isLeapYear(year))
+            return LEAP_YEAR_AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH[aMonth] - 1;
+        else
+            return AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH[aMonth] - 1;
     }
 
-    /**
-     * Returns true if this SerialDate represents the same date as the
-     * specified SerialDate.
-     *
-     * @param other  the date being compared to.
-     *
-     * @return <code>true</code> if this SerialDate represents the same date as
-     *         the specified SerialDate.
-     */
-    public boolean isOnOrAfter(final SerialDate other) {
-        return (this.serial >= other.toSerial());
+    private int huntForYearContaining(int anOrdinalDay, int startingYear) {
+        int aYear = startingYear;
+        while (firstOrdinalOfYear(aYear) <= anOrdinalDay)
+            aYear++;
+
+        return aYear - 1;
     }
 
-    /**
-     * Returns <code>true</code> if this {@link SerialDate} is within the 
-     * specified range (INCLUSIVE).  The date order of d1 and d2 is not 
-     * important.
-     *
-     * @param d1  a boundary date for the range.
-     * @param d2  the other boundary date for the range.
-     *
-     * @return A boolean.
-     */
-    public boolean isInRange(final SerialDate d1, final SerialDate d2) {
-        return isInRange(d1, d2, SerialDate.INCLUDE_BOTH);
+    private int firstOrdinalOfYear(int year) {
+        return calcOrdinal(1, Month.JANUARY, year);
     }
 
-    /**
-     * Returns true if this SerialDate is within the specified range (caller
-     * specifies whether or not the end-points are included).  The order of d1
-     * and d2 is not important.
-     *
-     * @param d1  one boundary date for the range.
-     * @param d2  a second boundary date for the range.
-     * @param include  a code that controls whether or not the start and end 
-     *                 dates are included in the range.
-     *
-     * @return <code>true</code> if this SerialDate is within the specified 
-     *         range.
-     */
-    public boolean isInRange(final SerialDate d1, final SerialDate d2, 
-                             final int include) {
-        final int s1 = d1.toSerial();
-        final int s2 = d2.toSerial();
-        final int start = Math.min(s1, s2);
-        final int end = Math.max(s1, s2);
-        
-        final int s = toSerial();
-        if (include == SerialDate.INCLUDE_BOTH) {
-            return (s >= start && s <= end);
-        }
-        else if (include == SerialDate.INCLUDE_FIRST) {
-            return (s >= start && s < end);            
-        }
-        else if (include == SerialDate.INCLUDE_SECOND) {
-            return (s > start && s <= end);            
-        }
-        else {
-            return (s > start && s < end);            
-        }    
+    public static DayDate createInstance(Date date) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        return new SpreadsheetDate(calendar.get(Calendar.DATE),
+                Month.fromInt(calendar.get(Calendar.MONTH) + 1),
+                calendar.get(Calendar.YEAR));
     }
-
-    /**
-     * Calculate the serial number from the day, month and year.
-     * <P>
-     * 1-Jan-1900 = 2.
-     *
-     * @param d  the day.
-     * @param m  the month.
-     * @param y  the year.
-     *
-     * @return the serial number from the day, month and year.
-     */
-    private int calcSerial(final int d, final int m, final int y) {
-        final int yy = ((y - 1900) * 365) + SerialDate.leapYearCount(y - 1);
-        int mm = SerialDate.AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH[m];
-        if (m > MonthConstants.FEBRUARY) {
-            if (SerialDate.isLeapYear(y)) {
-                mm = mm + 1;
-            }
-        }
-        final int dd = d;
-        return yy + mm + dd + 1;
-    }
-
 }

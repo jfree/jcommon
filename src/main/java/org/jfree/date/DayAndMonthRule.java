@@ -3,25 +3,25 @@
  * ========================================================================
  *
  * (C) Copyright 2000-2005, by Object Refinery Limited and Contributors.
- * 
+ *
  * Project Info:  http://www.jfree.org/jcommon/index.html
  *
- * This library is free software; you can redistribute it and/or modify it 
- * under the terms of the GNU Lesser General Public License as published by 
- * the Free Software Foundation; either version 2.1 of the License, or 
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
  * (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful, but 
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+ * This library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
  * License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, 
- * USA.  
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
  *
- * [Java is a trademark or registered trademark of Sun Microsystems, Inc. 
+ * [Java is a trademark or registered trademark of Sun Microsystems, Inc.
  * in the United States and other countries.]
  *
  * --------------------
@@ -48,7 +48,7 @@ package org.jfree.date;
 /**
  * An annual date rule where the generated date always falls on the same day
  * and month each year.
- * <P>
+ * <p>
  * An example is ANZAC Day in Australia and New Zealand: it is observed on
  * 25 April of every year.
  *
@@ -56,11 +56,15 @@ package org.jfree.date;
  */
 public class DayAndMonthRule extends AnnualDateRule {
 
-    /** The day of the month. */
+    /**
+     * The day of the month.
+     */
     private int dayOfMonth;
 
-    /** The month (uses 1 to 12 in the obvious way). */
-    private int month;
+    /**
+     * The month (uses 1 to 12 in the obvious way).
+     */
+    private Month month;
 
     /**
      * Default constructor: builds a DayAndMonthRule for 1 January.
@@ -72,13 +76,13 @@ public class DayAndMonthRule extends AnnualDateRule {
     /**
      * Standard constructor: builds a DayAndMonthRule for the given
      * day-of-the-month and month.
-     * <P>
+     * <p>
      * For the month parameter, use SerialDate.JANUARY, etc. Note that there
      * are no checks to prevent you from entering an invalid combination (such
      * as 31 February).
      *
-     * @param dayOfMonth  the day of the month (in the range 1 to 31).
-     * @param month  the month (use SerialDate.JANUARY, SerialDate.FEBRUARY etc.);
+     * @param dayOfMonth the day of the month (in the range 1 to 31).
+     * @param month      the month (use SerialDate.JANUARY, SerialDate.FEBRUARY etc.);
      */
     public DayAndMonthRule(final int dayOfMonth, final int month) {
 
@@ -100,14 +104,14 @@ public class DayAndMonthRule extends AnnualDateRule {
     /**
      * Sets the day-of-the-month for this rule.
      *
-     * @param dayOfMonth  the day-of-the-month.
+     * @param dayOfMonth the day-of-the-month.
      */
     public void setDayOfMonth(final int dayOfMonth) {
 
         // check arguments...
-        if ((dayOfMonth < 1) || (dayOfMonth > SerialDate.LAST_DAY_OF_MONTH[this.month])) {
+        if ((dayOfMonth < 1) || (dayOfMonth > month.lastDay())) {
             throw new IllegalArgumentException(
-                "DayAndMonthRule(): dayOfMonth outside valid range.");
+                    "DayAndMonthRule(): dayOfMonth outside valid range.");
         }
 
         // make the change...
@@ -117,42 +121,33 @@ public class DayAndMonthRule extends AnnualDateRule {
 
     /**
      * Returns an integer code representing the month.
-     * <P>
+     * <p>
      * The codes JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST,
      * SEPTEMBER, OCTOBER, NOVEMBER and DECEMBER are defined in the SerialDate
      * class.
      *
      * @return an integer code representing the month.
      */
-    public int getMonth() {
+    public Month getMonth() {
         return this.month;
     }
 
     /**
      * Sets the month for this rule.
      *
-     * @param month  the month for this rule.
+     * @param month the month for this rule.
      */
     public void setMonth(final int month) {
-
-        // check arguments...
-        if (!SerialDate.isValidMonthCode(month)) {
-            throw new IllegalArgumentException("DayAndMonthRule(): month code not valid.");
-        }
-
-        // make the change...
-        this.month = month;
-
+        this.month = Month.fromInt(month);
     }
 
     /**
      * Returns the date, given the year.
      *
-     * @param yyyy  the year.
-     *
+     * @param yyyy the year.
      * @return the date generated by this rule for the specified year (null permitted).
      */
-    public SerialDate getDate(final int yyyy) {
-        return SerialDate.createInstance(this.dayOfMonth, this.month, yyyy);
+    public DayDate getDate(final int yyyy) {
+        return DayDateFactory.makeDate(this.dayOfMonth, this.month, yyyy);
     }
 }

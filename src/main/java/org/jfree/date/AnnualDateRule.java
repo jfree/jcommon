@@ -67,7 +67,7 @@ public abstract class AnnualDateRule implements Cloneable {
      *
      * @return the date for this rule, given the year.
      */
-    public abstract SerialDate getDate(int year);
+    public abstract DayDate getDate(int year);
 
     /**
      * Returns a clone of the rule.
