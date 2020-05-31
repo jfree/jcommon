@@ -74,7 +74,7 @@ public class EasterSundayRule extends AnnualDateRule {
      *
      * @return the date of Easter Sunday for the given year.
      */
-    public SerialDate getDate(final int year) {
+    public DayDate getDate(final int year) {
         final int g = year % 19;
         final int c = year / 100;
         final int h = (c - c / 4 - (8 * c + 13) / 25 + 19 * g + 15) % 30;
@@ -83,7 +83,7 @@ public class EasterSundayRule extends AnnualDateRule {
         final int l = i - j;
         final int month = 3 + (l + 40) / 44;
         final int day = l + 28 - 31 * (month / 4);
-        return SerialDate.createInstance(day, month, year);
+        return DayDateFactory.makeDate(day, month, year);
     }
 
 }
